@@ -1,4 +1,6 @@
 package com.thedionisio.model.dto;
+import com.thedionisio.security.Security;
+
 import java.time.LocalDate;
 import java.util.*;
 
@@ -43,7 +45,13 @@ public class Person {
         return "< name, email, password >";
     }
 
+    public Person treatCreate(){
 
+        this.password = Security.encryption.generateHash(this.password);
+        this.isActive = true;
+
+        return this;
+    }
 
 
 }

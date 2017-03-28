@@ -28,7 +28,7 @@ public class PersonCtrl {
             {
               if (personBss.existingValidation(person))
               {
-                  ResponseEntity responseEntity = personRepository.create(collection, personBss.treatCreate(person));
+                  ResponseEntity responseEntity = personRepository.create(collection, person.treatCreate());
 
                   try
                   {

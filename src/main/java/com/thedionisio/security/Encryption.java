@@ -18,11 +18,11 @@ public class Encryption {
     }
 
 
-    public String generateHash(String password) {
+    public String generateHash(String word) {
 
         MessageDigestPasswordEncoder digestPasswordEncoder = getInstanceMessageDisterPassword();
 
-        String encodePassword = digestPasswordEncoder.encodePassword(password, salt);
+        String encodePassword = digestPasswordEncoder.encodePassword(word, salt);
 
         return encodePassword;
 

@@ -20,6 +20,8 @@ public class DocResource {
         {
             case "person" :
                 return new ModelAndView("doc/person");
+            case "login" :
+                return new ModelAndView("doc/login");
 
             default:
                 return new ModelAndView("doc/person");

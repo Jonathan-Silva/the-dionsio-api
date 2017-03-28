@@ -24,7 +24,7 @@ public class LoginPersonBssTest {
        Login login = new Login();
        login.email="alan@turing.com";
        login.password="turing";
-       login = (Login) new LoginBss().makeLoginPeopple(login);
+       login = (Login) new LoginBss().makeLogin(login);
 
        assertEquals("ok",login.token);
 

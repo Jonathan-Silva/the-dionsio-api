@@ -19,4 +19,6 @@ public interface Description {
      String not_registed = "no register were found that satisfies the condition";
      String reference_id = "reference _id = ";
 
+     String password = "you shall not pass";
+
 }

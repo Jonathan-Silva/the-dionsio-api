@@ -12,53 +12,39 @@ import java.util.List;
  */
 public class LoginBss {
 
-    public Boolean isValid(Login login)
-    {
-        if (!login.email.equals(null)    &&
-            !login.email.equals("")      &&
-            !login.password.equals(null) &&
-            !login.password.equals("")   &&
-            !login.entity.equals(null)   &&
-            !login.entity.equals(""))
-        {
-            return true;
-        }
-        return false;
-    }
 
     public Object makeLogin(Login login)
     {
         switch (login.entity)
         {
             case "person":
-                return login;
+                return makeLoginPeopple(login);
             case "company":
-                return login;
+                return makeLoginCompany(login);
             default :
                 return  login;
         }
     }
 
-    public Object makeLoginPeopple(Login login)
+    private Object makeLoginPeopple(Login login)
     {
        Object reponse = new PersonRepository().findByEmail(login.email);
        try
        {
            List<Person> person = (List<Person>) reponse;
-           if (Security.encryption.isPasswordValid(person.get(0).password,login.password))
+           if (person.size()>0 && Security.encryption.isPasswordValid(person.get(0).password,login.password))
            {
-               //makeLogin
 
-               login.token="ok";
-               System.out.println("ok");
+                   login.token=Security.encryption.generateHash("you shall not pass");
+
            }
            else
            {
                login.token="fail";
-               //retorna erro de senha
-               System.out.println("fail");
            }
-           return  login;
+
+
+           return  login.treatResponse();
        }
        catch (Exception e)
        {
@@ -66,7 +52,7 @@ public class LoginBss {
        }
     }
 
-    public Login makeLoginCompany(Login login)
+    private Login makeLoginCompany(Login login)
     {
        return  login;
     }

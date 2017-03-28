@@ -4,6 +4,7 @@ import com.thedionisio.dao.PersonRepository;
 import com.thedionisio.model.dto.Person;
 import com.thedionisio.security.Security;
 import com.thedionisio.util.Util;
+import com.thedionisio.util.validation.Description;
 import org.bson.Document;
 import java.util.List;
 
@@ -40,20 +41,12 @@ public class PersonBss {
     public Document treatResponse(List<Person> people){
         people.forEach(p->{
             p._id = Util.treatMongoId.toString(p._id);
-            p.password = "you shall not pass";
+            p.password = Description.password;
         });
 
         Document response = new Document();
         response.put("people", people);
         return response;
-    }
-
-    public Person treatCreate(Person person){
-
-        person.password = Security.encryption.generateHash(person.password);
-        person.isActive = true;
-
-        return person;
     }
 
 
