@@ -24,7 +24,7 @@ public class DocResource {
                 return new ModelAndView("doc/login");
 
             default:
-                return new ModelAndView("doc/person");
+                return new ModelAndView("doc/not-found");
 
         }
 

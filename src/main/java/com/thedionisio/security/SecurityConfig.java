@@ -18,19 +18,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-                .csrf()
-                .disable()
-                .exceptionHandling()
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authorizeRequests()
-                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .antMatchers("/login/**").permitAll()
-                .antMatchers("/person/**").permitAll()
-                .antMatchers("/documentation/**").permitAll()
-                .antMatchers("/event/**").permitAll()
-                .anyRequest().authenticated();
+                    .csrf()
+                    .disable()
+                    .exceptionHandling()
+                    .and()
+                    .sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    .and()
+                    .authorizeRequests()
+                    .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                    .antMatchers("/documentation/**").permitAll()
+                    .antMatchers("/event/**").permitAll()
+                    .antMatchers("/login/**").permitAll()
+                    .antMatchers("/person/**").permitAll()
+                    .anyRequest().authenticated();
     }
 }
