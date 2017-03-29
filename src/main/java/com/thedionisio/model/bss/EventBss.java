@@ -12,13 +12,7 @@ import java.util.List;
 public class EventBss {
     private PersonRepository personRepository = new PersonRepository();
 
-    public Boolean createValidation(Event event){
 
-        if(event.name!=null){
-            return true;
-        }
-        return false;
-    }
 
     public Boolean existingValidation(String collection, Event event){
         try

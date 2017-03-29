@@ -39,4 +39,13 @@ public class Event {
     public String isRequered(){
         return " < _idCompany, _idPlace, name >";
     }
+
+    public Integer createValidation(){
+
+        if(this.name!=null){
+            return 1;
+        }
+        return 0;
+    }
+
 }

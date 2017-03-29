@@ -21,8 +21,7 @@ public class EventCtrl {
 
         try
         {
-            System.out.println(event);
-            if(eventBss.createValidation(event))
+            if(event.createValidation()==1)
             {
                 if (eventBss.existingValidation(collection,event))
                 {

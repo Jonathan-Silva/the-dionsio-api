@@ -53,5 +53,14 @@ public class Person {
         return this;
     }
 
+    public Integer createValidation(){
+        if(this.name!=null  &&
+           this.email!=null &&
+           this.password!=null &&
+           this.genres!=null){
+            return 1;
+        }
+        return 0;
+    }
 
 }

@@ -14,13 +14,6 @@ import java.util.List;
 public class PersonBss {
     private PersonRepository personRepository = new PersonRepository();
 
-    public Boolean createValidation(Person person){
-        if(person.name!=null && person.email!=null && person.password!=null){
-            return true;
-        }
-        return false;
-    }
-
     public Boolean existingValidation(Person person){
         try
         {

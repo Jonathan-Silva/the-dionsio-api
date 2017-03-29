@@ -24,7 +24,7 @@ public class PersonCtrl {
 
         try
         {
-            if(personBss.createValidation(person))
+            if(person.createValidation()==1)
             {
               if (personBss.existingValidation(person))
               {
