@@ -19,10 +19,7 @@ public class EventBss {
         {
            List list = new ArrayList();
 
-           if (list.size()>0){
-               return false;
-           }
-           return true;
+            return list.size() <= 0;
         }
         catch (Exception e )
         {

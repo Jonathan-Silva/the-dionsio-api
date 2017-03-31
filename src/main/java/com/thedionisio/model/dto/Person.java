@@ -1,5 +1,8 @@
 package com.thedionisio.model.dto;
 import com.thedionisio.security.Security;
+import com.thedionisio.util.Util;
+import com.thedionisio.util.validation.Description;
+import org.bson.Document;
 
 import java.time.LocalDate;
 import java.util.*;

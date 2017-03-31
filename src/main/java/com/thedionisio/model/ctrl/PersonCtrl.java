@@ -3,6 +3,7 @@ package com.thedionisio.model.ctrl;
 import com.thedionisio.dao.PersonRepository;
 import com.thedionisio.model.bss.PersonBss;
 import com.thedionisio.model.dto.Person;
+import com.thedionisio.util.Util;
 import com.thedionisio.util.validation.RequestValidation;
 import org.bson.Document;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,9 @@ public class PersonCtrl {
 
     public Object create(Person person){
 
+
+        Person ass = new Person();
+
         try
         {
             if(person.createValidation()==1)
@@ -29,12 +33,13 @@ public class PersonCtrl {
               if (personBss.existingValidation(person))
               {
                   ResponseEntity responseEntity = personRepository.create(collection, person.treatCreate());
-
                   try
                   {
                       if (Boolean.parseBoolean(responseEntity.getBody().toString()))
                       {
-                          return validation.registry_create(person._id);
+                        List<Person> people = (List<Person>) personRepository.findByEmail(person.email);
+                        Object personResponse = Util.treatMongoId.toString(people.get(0)._id);
+                        return validation.registry_create(personResponse);
                       }
                   }
                   catch (Exception e)
@@ -62,15 +67,12 @@ public class PersonCtrl {
         {
             ResponseEntity<Object> responseEntity = (ResponseEntity<Object>) objectResponse;
             List<Person> person = (List<Person>) responseEntity.getBody();
-
             return personBss.treatResponse(person);
         }
         catch (Exception e)
         {
             return objectResponse;
         }
-
-
     }
 
     public Object findOne(Object id){

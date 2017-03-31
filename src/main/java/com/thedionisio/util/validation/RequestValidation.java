@@ -79,10 +79,7 @@ public class RequestValidation {
 
     //global validação de id
     public Boolean idValidation(Object _id){
-        if(_id!=null){
-            return true;
-        }
-        return false;
+        return _id != null;
     }
 
     //responses montados

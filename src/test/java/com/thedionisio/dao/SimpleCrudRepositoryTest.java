@@ -52,7 +52,12 @@ public class SimpleCrudRepositoryTest {
         objectResponse = simpleCrudRepository.find(collection,new Person(),where,new Document());
         responseRead = (ResponseEntity<Object>) objectResponse;
         persons = (List<Person>) responseRead.getBody();
-        isUpdate = (persons.get(0).name.equals("Turing"))? true: false;
+        isUpdate = persons.get(0).name.equals("Turing");
+
+        objectResponse = simpleCrudRepository.remove(collection,where);
+        responseRead = (ResponseEntity<Object>) objectResponse;
+        isDelete = Boolean.parseBoolean(responseRead.getBody().toString());
+
 
     }
 

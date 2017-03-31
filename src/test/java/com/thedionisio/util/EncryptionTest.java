@@ -23,7 +23,7 @@ public class EncryptionTest {
     public void isValid()
     {
         assertEquals(true,
-                encryption.isPasswordValid(encryption.generateHash("123456"),
+                Encryption.isPasswordValid(encryption.generateHash("123456"),
                                                                    "123456"));
     }
 

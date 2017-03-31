@@ -17,7 +17,7 @@ public class LoginCtrl {
             Object objectResponse = loginBss.makeLogin(login);
             try
             {
-                return  (Login) objectResponse;
+                return objectResponse;
             }
             catch (Exception e)
             {

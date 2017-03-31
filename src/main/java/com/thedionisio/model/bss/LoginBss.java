@@ -3,6 +3,7 @@ package com.thedionisio.model.bss;
 import com.thedionisio.dao.PersonRepository;
 import com.thedionisio.model.dto.Login;
 import com.thedionisio.model.dto.Person;
+import com.thedionisio.security.Encryption;
 import com.thedionisio.security.Security;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public class LoginBss {
        try
        {
            List<Person> person = (List<Person>) reponse;
-           if (person.size()>0 && Security.encryption.isPasswordValid(person.get(0).password,login.password))
+           if (person.size()>0 && Encryption.isPasswordValid(person.get(0).password,login.password))
            {
 
                    login.token=Security.encryption.generateHash("you shall not pass");
