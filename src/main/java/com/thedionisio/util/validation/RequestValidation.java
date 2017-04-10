@@ -107,12 +107,15 @@ public class RequestValidation {
         return new ResponseEntity<Object>(object, HttpStatus.OK);
 
     }
+
     public ResponseEntity registry_deleted(Object id){
         return new ResponseEntity<Object>(registryDeleted(id.toString()), HttpStatus.OK);
     }
+
     public ResponseEntity registry_create(Object id){
         return new ResponseEntity<Object>(registryCreate(id.toString()), HttpStatus.OK);
     }
+
     public ResponseEntity registry_update(Object id){
         return new ResponseEntity<Object>(registryUpdate(id.toString()), HttpStatus.OK);
     }

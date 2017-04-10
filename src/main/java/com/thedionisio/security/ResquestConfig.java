@@ -13,7 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 
 
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class ResquestConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -27,6 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                     .authorizeRequests()
                     .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                    .antMatchers("/company/**").permitAll()
                     .antMatchers("/documentation/**").permitAll()
                     .antMatchers("/event/**").permitAll()
                     .antMatchers("/login/**").permitAll()

@@ -1,8 +1,5 @@
 package com.thedionisio.model.dto;
 import com.thedionisio.security.Security;
-import com.thedionisio.util.Util;
-import com.thedionisio.util.validation.Description;
-import org.bson.Document;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -45,7 +42,7 @@ public class Person {
 
 
     public String isRequered(){
-        return "< name, email, password >";
+        return "< name, email, password, genres >";
     }
 
     public Person treatCreate(){
@@ -56,14 +53,13 @@ public class Person {
         return this;
     }
 
-    public Integer createValidation(){
-        if(this.name!=null  &&
-           this.email!=null &&
-           this.password!=null &&
-           this.genres!=null){
-            return 1;
-        }
-        return 0;
+    public Boolean createValidation(){
+     return this.name!=null  &&
+            this.email!=null &&
+            this.password!=null &&
+            this.genres!=null;
     }
+
+    public String attributeIdentifier(){return "email < ";}
 
 }

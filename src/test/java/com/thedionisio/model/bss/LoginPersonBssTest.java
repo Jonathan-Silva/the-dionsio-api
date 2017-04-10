@@ -1,6 +1,7 @@
 package com.thedionisio.model.bss;
 
 import com.thedionisio.model.dto.Login;
+import com.thedionisio.security.Security;
 import com.thedionisio.util.UtilTest;
 import org.junit.After;
 import org.junit.Before;

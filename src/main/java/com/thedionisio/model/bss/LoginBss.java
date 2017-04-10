@@ -33,11 +33,10 @@ public class LoginBss {
        try
        {
            List<Person> person = (List<Person>) reponse;
-           if (person.size()>0 && Encryption.isPasswordValid(person.get(0).password,login.password))
+
+           if (person.size()>0 && Security.encryption.isPasswordValid(person.get(0).password,login.password))
            {
-
-                   login.token=Security.encryption.generateHash("you shall not pass");
-
+               login.token=Security.encryption.generateHash("you shall not pass");
            }
            else
            {

@@ -3,6 +3,7 @@ package com.thedionisio.util;
 import com.thedionisio.dao.SimpleCrudRepository;
 import com.thedionisio.model.dto.Person;
 import com.thedionisio.security.Encryption;
+import com.thedionisio.security.Security;
 import org.bson.Document;
 import org.springframework.http.ResponseEntity;
 
@@ -19,7 +20,7 @@ public class CrudHelpTest {
             Person person = new Person();
             person.name="Alan Turing";
             person.email="alan@turing.com";
-            person.password= new Encryption().generateHash("turing");
+            person.password= Security.encryption.generateHash("turing");
             person.isActive=true;
             objectResponse = new SimpleCrudRepository().create("person", person);
             ResponseEntity<Object> responseCreate = (ResponseEntity<Object>) objectResponse;

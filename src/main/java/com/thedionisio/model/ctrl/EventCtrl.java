@@ -5,6 +5,7 @@ import com.thedionisio.model.bss.EventBss;
 import com.thedionisio.model.dto.Event;
 import com.thedionisio.util.validation.Description;
 import com.thedionisio.util.validation.RequestValidation;
+import com.thedionisio.util.validation.Validation;
 import org.bson.Document;
 
 /**
@@ -12,7 +13,6 @@ import org.bson.Document;
  */
 public class EventCtrl {
 
-    private RequestValidation validation = new RequestValidation();
     private EventBss eventBss = new EventBss();
     private EventRepository eventRepository = new EventRepository();
     private final String collection  ="event";
@@ -21,19 +21,19 @@ public class EventCtrl {
 
         try
         {
-            if(event.createValidation()==1)
+            if(event.createValidation())
             {
                 if (eventBss.existingValidation(collection,event))
                 {
                     return eventRepository.create(collection, event);
                 }
-                return validation.registry_existed("email <" + event);
+                return Validation.resquest.registry_existed(event.attributeIdentifier() + event);
             }
-            return validation.not_contains_fields(event.isRequered());
+            return Validation.resquest.not_contains_fields(event.isRequered());
         }
         catch (Exception e)
         {
-            return validation.not_data_base();
+            return Validation.resquest.not_data_base();
         }
 
     }
@@ -45,45 +45,45 @@ public class EventCtrl {
     public Object findOne(Object id){
         try
         {
-            if(validation.idValidation(id))
+            if(Validation.resquest.idValidation(id))
             {
                 return eventRepository.findOne(collection,id, new Event());
             }
-            return validation.not_contains_id();
+            return Validation.resquest.not_contains_id();
         }
         catch (Exception e)
         {
-            return validation.not_data_base();
+            return Validation.resquest.not_data_base();
         }
     }
 
     public Object update(Event event){
         try
         {
-            if(validation.idValidation(event._id))
+            if(Validation.resquest.idValidation(event._id))
             {
                 return  eventRepository.update(collection, event._id, event);
             }
-            return validation.not_contains_id();
+            return Validation.resquest.not_contains_id();
         }
         catch (Exception e)
         {
-            return validation.not_data_base();
+            return Validation.resquest.not_data_base();
         }
     }
 
     public Object remove(Event event){
         try
         {
-            if(validation.idValidation(event._id))
+            if(Validation.resquest.idValidation(event._id))
             {
                 return eventRepository.removeOne(collection, event._id);
             }
-            return validation.not_contains_id();
+            return Validation.resquest.not_contains_id();
         }
         catch (Exception e)
         {
-            return validation.not_data_base();
+            return Validation.resquest.not_data_base();
         }
 
     }

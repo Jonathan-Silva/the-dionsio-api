@@ -2,8 +2,7 @@ package com.thedionisio.model.bss;
 
 import com.thedionisio.dao.PersonRepository;
 import com.thedionisio.model.dto.Person;
-import com.thedionisio.security.Security;
-import com.thedionisio.util.Util;
+import com.thedionisio.util.mongo.Mongo;
 import com.thedionisio.util.validation.Description;
 import org.bson.Document;
 import java.util.List;
@@ -30,7 +29,7 @@ public class PersonBss {
 
     public Document treatResponse(List<Person> people){
         people.forEach(p->{
-            p._id = Util.treatMongoId.toString(p._id);
+            p._id = Mongo.treatMongoId.toString(p._id);
             p.password = Description.password;
         });
 

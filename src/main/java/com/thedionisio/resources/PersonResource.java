@@ -28,8 +28,6 @@ public class PersonResource {
         return this.personCtrl.create(person);
     }
 
-
-
     @RequestMapping(method = RequestMethod.PUT)
     public Object update(@RequestBody Person person) {
 

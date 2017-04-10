@@ -40,12 +40,10 @@ public class Event {
         return " < _idCompany, _idPlace, name >";
     }
 
-    public Integer createValidation(){
-
-        if(this.name!=null){
-            return 1;
-        }
-        return 0;
+    public Boolean createValidation(){
+        return  this.name!=null;
     }
+
+    public String attributeIdentifier(){return "email < ";}
 
 }

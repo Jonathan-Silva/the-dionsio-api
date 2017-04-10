@@ -1,5 +1,7 @@
 package com.thedionisio.model.dto;
 
+import com.thedionisio.security.Security;
+
 import java.util.List;
 
 /**
@@ -32,5 +34,27 @@ public class Company {
     public String phone;
     public List<Place> places;
     public Boolean isActive;
+
+
+    public String isRequered(){
+        return "< name, email, password, cnpj >";
+    }
+
+    public Company treatCreate(){
+
+        this.password = Security.encryption.generateHash(this.password);
+        this.isActive = true;
+
+        return this;
+    }
+
+    public Boolean createValidation(){
+        return  this.name!=null  &&
+                this.email!=null &&
+                this.password!=null &&
+                this.cnpj!=null;
+    }
+
+    public String attributeIdentifier(){return "email < ";}
 
 }
