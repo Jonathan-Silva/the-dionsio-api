@@ -14,6 +14,7 @@ import java.io.IOException;
  */
 @EnableWebSecurity
 public class CorsFilter extends OncePerRequestFilter {
+
         @Override
         protected void doFilterInternal(HttpServletRequest request,
                                         HttpServletResponse response,
@@ -22,6 +23,9 @@ public class CorsFilter extends OncePerRequestFilter {
             response.addHeader("Access-Control-Allow-Origin", "*");
             response.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
             response.addHeader("Access-Control-Allow-Headers", "X-Requested-With,Origin,Content-Type, Accept");
+
+
             filterChain.doFilter(request, response);
+
         }
 }
