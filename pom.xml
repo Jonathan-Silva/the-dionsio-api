@@ -78,9 +78,9 @@
 		<!-- email -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-name</artifactId>
+			<artifactId>commons-email</artifactId>
+			<version>1.4</version>
 		</dependency>
-
 		<!-- deserialize date -->
 		<dependency>
 			<groupId>com.jayway.jsonpath</groupId>

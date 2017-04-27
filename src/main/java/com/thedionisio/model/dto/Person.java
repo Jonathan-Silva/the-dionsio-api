@@ -1,4 +1,5 @@
 package com.thedionisio.model.dto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thedionisio.security.Security;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -43,10 +44,12 @@ public class Person {
 
 
 
+    @JsonIgnore
     public String isRequered(){
         return "< name, email, password, genres >";
     }
 
+    @JsonIgnore
     public Person treatCreate(){
 
         this.password = Security.encryption.generateHash(this.password);
@@ -55,6 +58,7 @@ public class Person {
         return this;
     }
 
+    @JsonIgnore
     public Boolean createValidation(){
      return this.name!=null  &&
             this.email!=null &&
@@ -62,8 +66,10 @@ public class Person {
             this.genres!=null;
     }
 
+    @JsonIgnore
     public String attributeIdentifier(){return "email < ";}
 
+    @JsonIgnore
     public String BCryptEncoderPassword() {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return bCryptPasswordEncoder.encode(this.password);

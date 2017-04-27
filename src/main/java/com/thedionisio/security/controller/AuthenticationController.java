@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("auth")
+@RequestMapping("/login")
 public class AuthenticationController {
 
     @Autowired
@@ -39,7 +39,7 @@ public class AuthenticationController {
     public ResponseEntity<?> authenticationRequest(@RequestBody AuthenticationRequest authenticationRequest)
             throws AuthenticationException {
 
-        // Perform the authentication
+
         Authentication authentication = this.authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         authenticationRequest.getUsername(),
@@ -48,11 +48,11 @@ public class AuthenticationController {
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        // Reload password post-authentication so we can generate token
+
         UserDetails userDetails = this.userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         String token = this.tokenUtils.generateToken(userDetails);
 
-        // Return the token
+
         return ResponseEntity.ok(new AuthenticationResponse(token));
     }
 

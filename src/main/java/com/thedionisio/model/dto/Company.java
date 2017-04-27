@@ -1,5 +1,6 @@
 package com.thedionisio.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thedionisio.security.Security;
 
 import java.util.List;
@@ -35,11 +36,12 @@ public class Company {
     public List<Place> places;
     public Boolean isActive;
 
-
+    @JsonIgnore
     public String isRequered(){
         return "< name, email, password, cnpj >";
     }
 
+    @JsonIgnore
     public Company treatCreate(){
 
         this.password = Security.encryption.generateHash(this.password);
@@ -47,14 +49,14 @@ public class Company {
 
         return this;
     }
-
+    @JsonIgnore
     public Boolean createValidation(){
         return  this.name!=null  &&
                 this.email!=null &&
                 this.password!=null &&
                 this.cnpj!=null;
     }
-
+    @JsonIgnore
     public String attributeIdentifier(){return "email < ";}
 
 }
