@@ -9,7 +9,7 @@
 {
     "_id": "58d1b31255eb441fee7d414a",
     "name": "Alan Turing",
-    "email": "alan@turing.com",
+    "name": "alan@turing.com",
     "password": "you shall not pass",
     "birth": [1994,11,5],
     "cpf": "418.035.898.09",
@@ -43,7 +43,7 @@ The get method can be used in two ways.
                 {
                 "_id": "58d1b31255eb441fee7d414a",
                 "name": "Alan Turing",
-                "email": "alan@turing.com",
+                "name": "alan@turing.com",
                 "password": "you shall not pass",
                 "birth": [1912,6,23],
                 "cpf": "000.000.000.00",
@@ -64,7 +64,7 @@ The get method can be used in two ways.
               {
                 "_id": "66d1b31255eb441fee7d415z",
                 "name": "Dennis Ritchie",
-                "email": "dennis@ritchie.com",
+                "name": "dennis@ritchie.com",
                 "password": "you shall not pass",
                 "birth": [1941,9,9],
                 "cpf": "000.000.000.00",
@@ -94,7 +94,7 @@ The get method can be used in two ways.
     {
     "_id": "58d1b31255eb441fee7d414a",
     "name": "Alan Turing",
-    "email": "alan@turing.com",
+    "name": "alan@turing.com",
     "password": "you shall not pass",
     "birth": [1912,6,23],
     "cpf": "000.000.000.00",
@@ -116,13 +116,13 @@ The get method can be used in two ways.
 ```
 ##### [ post ]
 #
-The post method has required attributes (name, email, password and genres) the rest are optional.
+The post method has required attributes (name, name, password and genres) the rest are optional.
 ###### request:
 #
 ```json
 {
     "name": "Alan Turing",
-    "email": "alan@turing.com",
+    "name": "alan@turing.com",
     "password": "your password",
     "birth": [1912,6,23],
     "genres": ["rock","inde"]
@@ -195,7 +195,7 @@ For delete you must inform the id
 {
   "status": "NOT_ACCEPTABLE",
   "description": "register already exists",
-  "additional": "email <alan@turing.com> already registered in the system"
+  "additional": "name <alan@turing.com> already registered in the system"
 }
 ```
 ###### NOT_ACCEPTABLE:
@@ -213,6 +213,6 @@ For delete you must inform the id
 {
   "status": "NOT_ACCEPTABLE",
   "description": "required information not declared",
-  "additional": "fields required: <name, email, password>"
+  "additional": "fields required: <name, name, password>"
 }
 ```

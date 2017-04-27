@@ -11,7 +11,7 @@
 <pre><code class="language-json">{
     "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"58d1b31255eb441fee7d414a"</span></span>,
     "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Alan Turing"</span></span>,
-    "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"alan@turing.com"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"alan@turing.com"</span></span>,
     "<span class="hljs-attribute">password</span>": <span class="hljs-value"><span class="hljs-string">"you shall not pass"</span></span>,
     "<span class="hljs-attribute">birth</span>": <span class="hljs-value">[<span class="hljs-number">1994</span>,<span class="hljs-number">11</span>,<span class="hljs-number">5</span>]</span>,
     "<span class="hljs-attribute">cpf</span>": <span class="hljs-value"><span class="hljs-string">"418.035.898.09"</span></span>,
@@ -46,7 +46,7 @@
                 {
                 "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"58d1b31255eb441fee7d414a"</span></span>,
                 "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Alan Turing"</span></span>,
-                "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"alan@turing.com"</span></span>,
+                "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"alan@turing.com"</span></span>,
                 "<span class="hljs-attribute">password</span>": <span class="hljs-value"><span class="hljs-string">"you shall not pass"</span></span>,
                 "<span class="hljs-attribute">birth</span>": <span class="hljs-value">[<span class="hljs-number">1912</span>,<span class="hljs-number">6</span>,<span class="hljs-number">23</span>]</span>,
                 "<span class="hljs-attribute">cpf</span>": <span class="hljs-value"><span class="hljs-string">"000.000.000.00"</span></span>,
@@ -67,7 +67,7 @@
               {
                 "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"66d1b31255eb441fee7d415z"</span></span>,
                 "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Dennis Ritchie"</span></span>,
-                "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"dennis@ritchie.com"</span></span>,
+                "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"dennis@ritchie.com"</span></span>,
                 "<span class="hljs-attribute">password</span>": <span class="hljs-value"><span class="hljs-string">"you shall not pass"</span></span>,
                 "<span class="hljs-attribute">birth</span>": <span class="hljs-value">[<span class="hljs-number">1941</span>,<span class="hljs-number">9</span>,<span class="hljs-number">9</span>]</span>,
                 "<span class="hljs-attribute">cpf</span>": <span class="hljs-value"><span class="hljs-string">"000.000.000.00"</span></span>,
@@ -98,7 +98,7 @@
     {
     "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"58d1b31255eb441fee7d414a"</span></span>,
     "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Alan Turing"</span></span>,
-    "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"alan@turing.com"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"alan@turing.com"</span></span>,
     "<span class="hljs-attribute">password</span>": <span class="hljs-value"><span class="hljs-string">"you shall not pass"</span></span>,
     "<span class="hljs-attribute">birth</span>": <span class="hljs-value">[<span class="hljs-number">1912</span>,<span class="hljs-number">6</span>,<span class="hljs-number">23</span>]</span>,
     "<span class="hljs-attribute">cpf</span>": <span class="hljs-value"><span class="hljs-string">"000.000.000.00"</span></span>,
@@ -120,12 +120,12 @@
 </code></pre>
 <h5><a id="_post__116"></a>[ post ]</h5>
 <h1><a id="_117"></a></h1>
-<p>The post method has required attributes (name, email, password and genres) the rest are optional.</p>
+<p>The post method has required attributes (name, name, password and genres) the rest are optional.</p>
 <h6><a id="request_119"></a>request:</h6>
 <h1><a id="_120"></a></h1>
 <pre><code class="language-json">{
     "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Alan Turing"</span></span>,
-    "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"alan@turing.com"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"alan@turing.com"</span></span>,
     "<span class="hljs-attribute">password</span>": <span class="hljs-value"><span class="hljs-string">"your password"</span></span>,
     "<span class="hljs-attribute">birth</span>": <span class="hljs-value">[<span class="hljs-number">1912</span>,<span class="hljs-number">6</span>,<span class="hljs-number">23</span>]</span>,
     "<span class="hljs-attribute">genres</span>": <span class="hljs-value">[<span class="hljs-string">"rock"</span>,<span class="hljs-string">"inde"</span>]
@@ -190,7 +190,7 @@
 <pre><code class="language-json">{
   "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"NOT_ACCEPTABLE"</span></span>,
   "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"register already exists"</span></span>,
-  "<span class="hljs-attribute">additional</span>": <span class="hljs-value"><span class="hljs-string">"email &lt;alan@turing.com&gt; already registered in the system"</span>
+  "<span class="hljs-attribute">additional</span>": <span class="hljs-value"><span class="hljs-string">"name &lt;alan@turing.com&gt; already registered in the system"</span>
 </span>}
 </code></pre>
 <h6><a id="NOT_ACCEPTABLE_200"></a>NOT_ACCEPTABLE:</h6>
@@ -206,7 +206,7 @@
 <pre><code class="language-json">{
   "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"NOT_ACCEPTABLE"</span></span>,
   "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"required information not declared"</span></span>,
-  "<span class="hljs-attribute">additional</span>": <span class="hljs-value"><span class="hljs-string">"fields required: &lt;name, email, password&gt;"</span>
+  "<span class="hljs-attribute">additional</span>": <span class="hljs-value"><span class="hljs-string">"fields required: &lt;name, name, password&gt;"</span>
 </span>}
 </code></pre>
 

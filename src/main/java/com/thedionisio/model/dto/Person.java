@@ -1,5 +1,6 @@
 package com.thedionisio.model.dto;
 import com.thedionisio.security.Security;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -62,5 +63,10 @@ public class Person {
     }
 
     public String attributeIdentifier(){return "email < ";}
+
+    public String BCryptEncoderPassword() {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        return bCryptPasswordEncoder.encode(this.password);
+    }
 
 }
