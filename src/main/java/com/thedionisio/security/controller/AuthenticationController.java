@@ -56,7 +56,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(new AuthenticationResponse(token));
     }
 
-    @RequestMapping(value = "refresh", method = RequestMethod.GET)
+    @RequestMapping(value = "/refresh", method = RequestMethod.GET)
     public ResponseEntity<?> authenticationRequest(HttpServletRequest request)
     {
         String token = request.getHeader(AppConstant.tokenHeader);
