@@ -1,7 +1,7 @@
 package com.thedionisio.dao;
 
 import com.thedionisio.dao.mongoDB.MongoCrud;
-import com.thedionisio.util.validation.RequestValidation;
+import com.thedionisio.util.verification.RequestValidation;
 import org.bson.Document;
 import org.springframework.http.ResponseEntity;
 

@@ -4,7 +4,7 @@ import com.thedionisio.dao.CompanyRepository;
 import com.thedionisio.model.bss.CompanyBss;
 import com.thedionisio.model.dto.Company;
 import com.thedionisio.util.mongo.Mongo;
-import com.thedionisio.util.validation.Validation;
+import com.thedionisio.util.verification.Validation;
 import org.bson.Document;
 import org.springframework.http.ResponseEntity;
 

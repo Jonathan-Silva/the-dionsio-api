@@ -1,4 +1,4 @@
-package com.thedionisio.util.validation;
+package com.thedionisio.util.verification;
 
 import com.thedionisio.model.dto.Validation;
 import org.springframework.http.HttpStatus;

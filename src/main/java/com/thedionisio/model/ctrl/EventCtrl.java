@@ -3,9 +3,7 @@ package com.thedionisio.model.ctrl;
 import com.thedionisio.dao.EventRepository;
 import com.thedionisio.model.bss.EventBss;
 import com.thedionisio.model.dto.Event;
-import com.thedionisio.util.validation.Description;
-import com.thedionisio.util.validation.RequestValidation;
-import com.thedionisio.util.validation.Validation;
+import com.thedionisio.util.verification.Validation;
 import org.bson.Document;
 
 /**

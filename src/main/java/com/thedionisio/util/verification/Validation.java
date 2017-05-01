@@ -1,4 +1,4 @@
-package com.thedionisio.util.validation;
+package com.thedionisio.util.verification;
 
 /**
  * Created by jonathan on 3/28/17.

@@ -2,9 +2,8 @@ package com.thedionisio.model.bss;
 
 import com.thedionisio.dao.CompanyRepository;
 import com.thedionisio.model.dto.Company;
-import com.thedionisio.model.dto.Person;
 import com.thedionisio.util.mongo.Mongo;
-import com.thedionisio.util.validation.Description;
+import com.thedionisio.util.verification.Description;
 import org.bson.Document;
 
 import java.util.List;

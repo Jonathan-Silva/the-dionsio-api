@@ -1,5 +1,8 @@
 package com.thedionisio.security;
 
+import com.thedionisio.util.verification.Validation;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
@@ -17,7 +20,7 @@ public class EntryPointUnauthorizedHandler implements AuthenticationEntryPoint {
                          HttpServletResponse httpServletResponse,
                          AuthenticationException e) throws IOException, ServletException
     {
-        httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Access Denied");
+        httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "NOT_ACCEPTABLE");
     }
 
 }
