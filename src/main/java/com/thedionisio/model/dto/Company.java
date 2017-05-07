@@ -17,7 +17,7 @@ public class Company {
                 ", socialName='" + socialName + '\'' +
                 ", cnpj='" + cnpj + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
+                ", PASSWORD_SHADOW='" + password + '\'' +
                 ", answerable='" + answerable + '\'' +
                 ", phone='" + phone + '\'' +
                 ", places=" + places +
@@ -38,7 +38,7 @@ public class Company {
 
     @JsonIgnore
     public String isRequered(){
-        return "< name, email, password, cnpj >";
+        return "< name, email, PASSWORD_SHADOW, cnpj >";
     }
 
     @JsonIgnore

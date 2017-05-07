@@ -35,7 +35,7 @@ public class CompanyCtrl {
                             List<Company> companies = (List<Company>) companyRepository.findByEmail(company.email);
                             System.out.println(companies.get(0)._id);
                             Object companyResponse = Mongo.treatMongoId.toString(companies.get(0)._id);
-                            return Validation.resquest.registry_create(companyResponse);
+                            return Validation.resquest.REGISTRY_CREATE(companyResponse);
                         }
                     }
                     catch (Exception e)
@@ -45,13 +45,13 @@ public class CompanyCtrl {
                     }
 
                 }
-                return Validation.resquest.registry_existed(company.attributeIdentifier() + company.email);
+                return Validation.resquest.REGISTRY_EXISTED(company.attributeIdentifier() + company.email);
             }
-            return Validation.resquest.not_contains_fields(company.isRequered());
+            return Validation.resquest.NOT_CONTAINS_FIELDS(company.isRequered());
         }
         catch (Exception e)
         {
-            return Validation.resquest.not_data_base();
+            return Validation.resquest.NOT_DATA_BASE();
         }
 
     }
@@ -82,11 +82,11 @@ public class CompanyCtrl {
                 List<Company> companies = (List<Company>) responseEntity.getBody();
                 return companyBss.treatResponse(companies);
             }
-            return Validation.resquest.not_contains_id();
+            return Validation.resquest.NOT_CONTAINS_ID();
         }
         catch (Exception e)
         {
-            return Validation.resquest.not_data_base();
+            return Validation.resquest.NOT_DATA_BASE();
         }
     }
 
@@ -101,7 +101,7 @@ public class CompanyCtrl {
                 {
                     if((Boolean) objectResponse)
                     {
-                        return Validation.resquest.registry_create(company._id);
+                        return Validation.resquest.REGISTRY_CREATE(company._id);
                     }
                 }catch (Exception e)
                 {
@@ -109,11 +109,11 @@ public class CompanyCtrl {
                 }
 
             }
-            return Validation.resquest.not_contains_id();
+            return Validation.resquest.NOT_CONTAINS_ID();
         }
         catch (Exception e)
         {
-            return Validation.resquest.not_data_base();
+            return Validation.resquest.NOT_DATA_BASE();
         }
     }
 
@@ -130,7 +130,7 @@ public class CompanyCtrl {
                 {
                     if ((Boolean)responseEntity.getBody())
                     {
-                        return  Validation.resquest.registry_deleted(company._id);
+                        return  Validation.resquest.REGISTRY_DELETED(company._id);
                     }
                 }
                 catch (Exception e)
@@ -138,11 +138,11 @@ public class CompanyCtrl {
                     return responseEntity;
                 }
             }
-            return Validation.resquest.not_contains_id();
+            return Validation.resquest.NOT_CONTAINS_ID();
         }
         catch (Exception e)
         {
-            return Validation.resquest.not_data_base();
+            return Validation.resquest.NOT_DATA_BASE();
         }
 
     }

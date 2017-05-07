@@ -20,7 +20,7 @@ public class EntryPointUnauthorizedHandler implements AuthenticationEntryPoint {
                          HttpServletResponse httpServletResponse,
                          AuthenticationException e) throws IOException, ServletException
     {
-        httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "NOT_ACCEPTABLE");
+        httpServletResponse.sendRedirect("/error/401");
     }
 
 }

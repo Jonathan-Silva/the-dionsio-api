@@ -20,9 +20,9 @@ public class SimpleCrudRepository {
 
         if(simpleCrud.create(collection, object))
         {
-            return validation.that_ok(true);
+            return validation.THAT_OK(true);
         }
-        return validation.not_data_base();
+        return validation.NOT_DATA_BASE();
     }
 
     public Object find(String collection, Object object, Document query, Document sort){
@@ -33,7 +33,7 @@ public class SimpleCrudRepository {
         {
             return findRule(result);
         }
-        return validation.not_data_base();
+        return validation.NOT_DATA_BASE();
     }
 
     public Object findOne(String collection, Object id, Object object){
@@ -44,7 +44,7 @@ public class SimpleCrudRepository {
         {
             return findRule(result);
         }
-        return validation.not_data_base();
+        return validation.NOT_DATA_BASE();
       }
 
     public Object update(String collection, Object id, Object object){
@@ -56,9 +56,9 @@ public class SimpleCrudRepository {
             {
                 return true;
             }
-            return  validation.item_not_found(item);
+            return  validation.ITEM_NOT_FOUND(item);
         }
-        return validation.not_data_base();
+        return validation.NOT_DATA_BASE();
     }
 
     public Object removeOne(String collection, Object id){
@@ -69,11 +69,11 @@ public class SimpleCrudRepository {
         {
             if(Integer.valueOf(result.toString())>0)
             {
-                return validation.that_ok(true);
+                return validation.THAT_OK(true);
             }
-            return  validation.item_not_found(result);
+            return  validation.ITEM_NOT_FOUND(result);
         }
-        return validation.not_data_base();
+        return validation.NOT_DATA_BASE();
 
    }
 
@@ -85,11 +85,11 @@ public class SimpleCrudRepository {
         {
             if(Integer.valueOf(result.toString())>0)
             {
-                return validation.that_ok(true);
+                return validation.THAT_OK(true);
             }
-            return  validation.item_not_found(result);
+            return  validation.ITEM_NOT_FOUND(result);
         }
-        return validation.not_data_base();
+        return validation.NOT_DATA_BASE();
 
     }
 
@@ -100,8 +100,8 @@ public class SimpleCrudRepository {
        {
            Document persons = new  Document();
            persons.put("persons",listResult);
-           return validation.that_ok(listResult);
+           return validation.THAT_OK(listResult);
        }
-       return  validation.item_not_found(false);
+       return  validation.ITEM_NOT_FOUND(false);
    }
 }

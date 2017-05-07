@@ -18,11 +18,12 @@ public class RestClient {
     private HttpHeaders headers;
     private HttpStatus status;
 
-    public RestClient() {
+    public RestClient(String token) {
         this.rest = new RestTemplate();
         this.headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
         headers.add("Accept", "*/*");
+        headers.add("X-Auth-Token",token);
     }
 
     public ResponseEntity get(String uri) {

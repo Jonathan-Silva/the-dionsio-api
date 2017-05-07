@@ -32,7 +32,7 @@ public class CompanyBss {
     public Document treatResponse(List<Company> companies){
         companies.forEach(c->{
             c._id = Mongo.treatMongoId.toString(c._id);
-            c.password = Description.password;
+            c.password = Description.PASSWORD_SHADOW;
         });
 
         Document response = new Document();

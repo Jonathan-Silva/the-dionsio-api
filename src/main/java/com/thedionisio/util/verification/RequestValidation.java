@@ -11,112 +11,128 @@ public class RequestValidation {
 
     private Validation validation = new Validation();
 
-    //estrutruras de respostas
     private Validation notContainsID()
     {
         validation.status = HttpStatus.NOT_ACCEPTABLE;
-        validation.description = Description.not_found_info;
-        validation.additional =Description.required_id;
+        validation.description = Description.NOT_FOUND_INFO;
+        validation.additional =Description.REQUIRED_ID;
 
        return validation;
     }
     private Validation notContainsFields(String fields)
     {
         validation.status = HttpStatus.NOT_ACCEPTABLE;
-        validation.description = Description.not_found_info;
-        validation.additional = Description.required_fields + fields;
+        validation.description = Description.NOT_FOUND_INFO;
+        validation.additional = Description.REQUIRED_FIELDS + fields;
 
         return validation;
     }
     private Validation notDataBase()
     {
         validation.status = HttpStatus.INSUFFICIENT_STORAGE;
-        validation.description = Description.problems_database;
-        validation.additional = Description.check_mongo_conection;
+        validation.description = Description.PROBLEMS_DATABASE;
+        validation.additional = Description.CHECK_MONGO_CONNECTION;
 
         return validation;
     }
     private Validation existing(String field)
     {
         validation.status = HttpStatus.NOT_ACCEPTABLE;
-        validation.description = Description.register_existed;
-        validation.additional = field + Description.field_existed;
+        validation.description = Description.REGISTER_EXISTED;
+        validation.additional = field + Description.FIELD_EXISTED;
 
         return validation;
     }
-    private Validation not_found()
+    private Validation notFound()
     {
         validation.status = HttpStatus.NOT_FOUND;
-        validation.description = Description.register_not_found;
-        validation.additional = Description.not_registed;
+        validation.description = Description.REGISTER_NOT_FOUND;
+        validation.additional = Description.NOT_REGISTERED;
+
+        return validation;
+    }
+    private Validation notAutorized()
+    {
+        validation.status = HttpStatus.UNAUTHORIZED;
+        validation.description = Description.REQUEST_NOT_AUTHORIZED;
+        validation.additional = Description.BAD_CREDENTIALS;
 
         return validation;
     }
     private Validation registryDeleted(String id)
     {
         validation.status = HttpStatus.OK;
-        validation.description = Description.register_deleted;
-        validation.additional = Description.reference_id + id;
+        validation.description = Description.REGISTER_DELETED;
+        validation.additional = Description.REFERENCE_ID + id;
 
         return validation;
     }
     private Validation registryCreate(String id)
     {
         validation.status = HttpStatus.OK;
-        validation.description = Description.register_created;
-        validation.additional = Description.reference_id + id;
+        validation.description = Description.REGISTER_CREATED;
+        validation.additional = Description.REFERENCE_ID + id;
 
         return validation;
     }
     private Validation registryUpdate(String id)
     {
         validation.status = HttpStatus.OK;
-        validation.description = Description.register_updated;
-        validation.additional = Description.reference_id + id;
+        validation.description = Description.REGISTER_UPDATED;
+        validation.additional = Description.REFERENCE_ID + id;
 
         return validation;
     }
 
-    //global validação de id
+    /**
+     * Global validation for _ID
+     * @param _id
+     * @return
+     */
     public Boolean idValidation(Object _id){
         return _id != null;
     }
 
     //responses montados
-    public ResponseEntity not_contains_id(){
+    public ResponseEntity NOT_CONTAINS_ID(){
         return new ResponseEntity<Object>(notContainsID(), HttpStatus.NOT_ACCEPTABLE);
     }
 
-    public ResponseEntity not_contains_fields(String fields){
+    public ResponseEntity NOT_CONTAINS_FIELDS(String fields){
         return new ResponseEntity<Object>(notContainsFields(fields), HttpStatus.NOT_ACCEPTABLE);
     }
 
-    public ResponseEntity not_data_base(){
+    public ResponseEntity NOT_DATA_BASE(){
         return new ResponseEntity<Object>(notDataBase(), HttpStatus.INSUFFICIENT_STORAGE);
     }
 
-    public ResponseEntity registry_existed(String field){
+    public ResponseEntity REGISTRY_EXISTED(String field){
         return new ResponseEntity<Object>(existing(field), HttpStatus.NOT_ACCEPTABLE);
     }
 
-    public ResponseEntity item_not_found(Object object){
-        return new ResponseEntity<Object>(not_found(), HttpStatus.NOT_FOUND);
+    public ResponseEntity ITEM_NOT_FOUND(Object object){
+        return new ResponseEntity<Object>(notFound(), HttpStatus.NOT_FOUND);
     }
 
-    public ResponseEntity that_ok(Object object){
+    public ResponseEntity THAT_OK(Object object){
         return new ResponseEntity<Object>(object, HttpStatus.OK);
 
     }
 
-    public ResponseEntity registry_deleted(Object id){
+    public ResponseEntity REGISTRY_DELETED(Object id){
         return new ResponseEntity<Object>(registryDeleted(id.toString()), HttpStatus.OK);
     }
 
-    public ResponseEntity registry_create(Object id){
+    public ResponseEntity REGISTRY_CREATE(Object id){
         return new ResponseEntity<Object>(registryCreate(id.toString()), HttpStatus.OK);
     }
 
-    public ResponseEntity registry_update(Object id){
+    public ResponseEntity REGISTRY_UPDATE(Object id){
         return new ResponseEntity<Object>(registryUpdate(id.toString()), HttpStatus.OK);
+    }
+
+
+    public ResponseEntity REQUEST_NOT_AUTHORIZED(){
+        return new ResponseEntity<Object>(notAutorized(), HttpStatus.UNAUTHORIZED);
     }
 }

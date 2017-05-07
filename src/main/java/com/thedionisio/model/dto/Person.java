@@ -21,7 +21,7 @@ public class Person {
                 "_id=" + _id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
+                ", PASSWORD_SHADOW='" + password + '\'' +
                 ", birth=" + birth +
                 ", cpf='" + cpf + '\'' +
                 ", sex='" + sex + '\'' +
@@ -46,7 +46,7 @@ public class Person {
 
     @JsonIgnore
     public String isRequered(){
-        return "< name, email, password, genres >";
+        return "< name, email, PASSWORD_SHADOW, genres >";
     }
 
     @JsonIgnore

@@ -35,7 +35,7 @@ public class PersonCtrl {
                       {
                         List<Person> people = (List<Person>) personRepository.findByEmail(person.email);
                         Object personResponse = Mongo.treatMongoId.toString(people.get(0)._id);
-                        return Validation.resquest.registry_create(personResponse);
+                        return Validation.resquest.REGISTRY_CREATE(personResponse);
                       }
                   }
                   catch (Exception e)
@@ -44,13 +44,13 @@ public class PersonCtrl {
                   }
 
               }
-              return Validation.resquest.registry_existed(person.attributeIdentifier() + person.email);
+              return Validation.resquest.REGISTRY_EXISTED(person.attributeIdentifier() + person.email);
             }
-            return Validation.resquest.not_contains_fields(person.isRequered());
+            return Validation.resquest.NOT_CONTAINS_FIELDS(person.isRequered());
         }
         catch (Exception e)
         {
-            return Validation.resquest.not_data_base();
+            return Validation.resquest.NOT_DATA_BASE();
         }
 
     }
@@ -81,11 +81,11 @@ public class PersonCtrl {
                 List<Person> person = (List<Person>) responseEntity.getBody();
                 return personBss.treatResponse(person);
             }
-            return Validation.resquest.not_contains_id();
+            return Validation.resquest.NOT_CONTAINS_ID();
         }
         catch (Exception e)
         {
-            return Validation.resquest.not_data_base();
+            return Validation.resquest.NOT_DATA_BASE();
         }
     }
 
@@ -100,7 +100,7 @@ public class PersonCtrl {
               {
                   if((Boolean) objectResponse)
                   {
-                      return Validation.resquest.registry_create(person._id);
+                      return Validation.resquest.REGISTRY_CREATE(person._id);
                   }
               }catch (Exception e)
               {
@@ -108,11 +108,11 @@ public class PersonCtrl {
               }
 
            }
-           return Validation.resquest.not_contains_id();
+           return Validation.resquest.NOT_CONTAINS_ID();
        }
        catch (Exception e)
        {
-           return Validation.resquest.not_data_base();
+           return Validation.resquest.NOT_DATA_BASE();
        }
     }
 
@@ -129,7 +129,7 @@ public class PersonCtrl {
                {
                     if ((Boolean)responseEntity.getBody())
                     {
-                        return  Validation.resquest.registry_deleted(person._id);
+                        return  Validation.resquest.REGISTRY_DELETED(person._id);
                     }
                }
                catch (Exception e)
@@ -137,11 +137,11 @@ public class PersonCtrl {
                    return responseEntity;
                }
            }
-           return Validation.resquest.not_contains_id();
+           return Validation.resquest.NOT_CONTAINS_ID();
        }
        catch (Exception e)
        {
-           return Validation.resquest.not_data_base();
+           return Validation.resquest.NOT_DATA_BASE();
        }
 
     }

@@ -30,7 +30,7 @@ public class PersonBss {
     public Document treatResponse(List<Person> people){
         people.forEach(p->{
             p._id = Mongo.treatMongoId.toString(p._id);
-            p.password = Description.password;
+            p.password = Description.PASSWORD_SHADOW;
         });
 
         Document response = new Document();

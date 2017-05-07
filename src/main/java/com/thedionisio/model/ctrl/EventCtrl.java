@@ -25,13 +25,13 @@ public class EventCtrl {
                 {
                     return eventRepository.create(collection, event);
                 }
-                return Validation.resquest.registry_existed(event.attributeIdentifier() + event);
+                return Validation.resquest.REGISTRY_EXISTED(event.attributeIdentifier() + event);
             }
-            return Validation.resquest.not_contains_fields(event.isRequered());
+            return Validation.resquest.NOT_CONTAINS_FIELDS(event.isRequered());
         }
         catch (Exception e)
         {
-            return Validation.resquest.not_data_base();
+            return Validation.resquest.NOT_DATA_BASE();
         }
 
     }
@@ -47,11 +47,11 @@ public class EventCtrl {
             {
                 return eventRepository.findOne(collection,id, new Event());
             }
-            return Validation.resquest.not_contains_id();
+            return Validation.resquest.NOT_CONTAINS_ID();
         }
         catch (Exception e)
         {
-            return Validation.resquest.not_data_base();
+            return Validation.resquest.NOT_DATA_BASE();
         }
     }
 
@@ -62,11 +62,11 @@ public class EventCtrl {
             {
                 return  eventRepository.update(collection, event._id, event);
             }
-            return Validation.resquest.not_contains_id();
+            return Validation.resquest.NOT_CONTAINS_ID();
         }
         catch (Exception e)
         {
-            return Validation.resquest.not_data_base();
+            return Validation.resquest.NOT_DATA_BASE();
         }
     }
 
@@ -77,11 +77,11 @@ public class EventCtrl {
             {
                 return eventRepository.removeOne(collection, event._id);
             }
-            return Validation.resquest.not_contains_id();
+            return Validation.resquest.NOT_CONTAINS_ID();
         }
         catch (Exception e)
         {
-            return Validation.resquest.not_data_base();
+            return Validation.resquest.NOT_DATA_BASE();
         }
 
     }

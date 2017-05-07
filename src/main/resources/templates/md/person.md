@@ -123,7 +123,7 @@ The post method has required attributes (name, name, password and genres) the re
 {
     "name": "Alan Turing",
     "name": "alan@turing.com",
-    "password": "your password",
+    "password": password_shodow,
     "birth": [1912,6,23],
     "genres": ["rock","inde"]
 }
@@ -213,6 +213,6 @@ For delete you must inform the id
 {
   "status": "NOT_ACCEPTABLE",
   "description": "required information not declared",
-  "additional": "fields required: <name, name, password>"
+  "additional": password_shodow
 }
 ```

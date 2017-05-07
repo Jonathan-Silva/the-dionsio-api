@@ -17,7 +17,7 @@ public class ConsumerAPI {
 
     private ResponseObeject comsumer(String uri, HttpMethod httpMethod){
         int statusCode = 0;
-        RestClient restClient = new RestClient();
+        RestClient restClient = new RestClient("jonatabldeudvujvçu");
         ResponseObeject responseObeject = new ResponseObeject();
         ResponseEntity reponse = new ResponseEntity(HttpStatus.BAD_REQUEST);
 

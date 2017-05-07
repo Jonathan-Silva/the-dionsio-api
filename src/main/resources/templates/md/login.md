@@ -58,6 +58,6 @@ The post method has required attributes (name, password and entity).
 {
   "status": "NOT_ACCEPTABLE",
   "description": "required information not declared",
-  "additional": "fields required: <name, password, entity>"
+  "additional": password_shodow
 }
 ```
