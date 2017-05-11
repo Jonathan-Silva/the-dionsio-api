@@ -13,7 +13,7 @@ public class Batch {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", sector='" + sector + '\'' +
-                ", date=" + date +
+                ", dateTimeControl=" + dateTimeControl +
                 ", limit=" + limit +
                 ", sold=" + sold +
                 ", price=" + price +
@@ -26,7 +26,7 @@ public class Batch {
     public String name;
     public String description;
     public String sector;
-    public Date date;
+    public DateTimeControl dateTimeControl;
     public Integer limit;
     public Integer sold;
     public Price price;

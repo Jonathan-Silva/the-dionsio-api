@@ -5,7 +5,7 @@
 
 	<groupId>com.thedionisio</groupId>
 	<artifactId>the-dionisio-api</artifactId>
-	<version>0.0.6</version>
+	<version>0.0.7</version>
 	<packaging>jar</packaging>
 
 	<name>the-dionisio-api</name>
@@ -25,10 +25,6 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -81,7 +77,7 @@
 			<artifactId>commons-email</artifactId>
 			<version>1.4</version>
 		</dependency>
-		<!-- deserialize date -->
+		<!-- deserializador de LocalDate -->
 		<dependency>
 			<groupId>com.jayway.jsonpath</groupId>
 			<artifactId>json-path</artifactId>

@@ -14,7 +14,7 @@ public class Event {
                 ", _idPlace=" + _idPlace +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", date=" + date +
+                ", dateTimeControl=" + dateTimeControl +
                 ", genres=" + genres +
                 ", urlBanners=" + urlBanners +
                 ", batches=" + batches +
@@ -23,12 +23,13 @@ public class Event {
                 '}';
     }
 
+
     public Object _id;
     public Object _idCompany;
     public Object _idPlace;
     public String name;
     public String description;
-    public Date date;
+    public DateTimeControl dateTimeControl;
     public List<String> genres;
     public List<String> urlBanners;
     public List<Batch> batches;
