@@ -2,10 +2,7 @@ package com.thedionisio.resources;
 
 import com.thedionisio.model.ctrl.EventCtrl;
 import com.thedionisio.model.dto.Event;
-import com.thedionisio.model.dto.Person;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * Created by jonathan on 3/11/17.

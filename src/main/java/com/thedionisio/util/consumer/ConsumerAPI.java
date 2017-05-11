@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.thedionisio.model.dto.ResponseObeject;
 import com.thedionisio.model.dto.Validation;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 /**
@@ -12,18 +11,20 @@ import org.springframework.http.ResponseEntity;
  */
 public class ConsumerAPI {
 
-    private Object convertObject;
     private Object body;
+    RestClient restClient = new RestClient("");
+    ResponseObeject responseObeject;
+    ResponseEntity reponse;
+
+    public ConsumerAPI(String token) {
+         restClient = new RestClient(token);
+    }
+
 
     private ResponseObeject comsumer(String uri, HttpMethod httpMethod){
         int statusCode = 0;
-        RestClient restClient = new RestClient("jonatabldeudvujvçu");
-        ResponseObeject responseObeject = new ResponseObeject();
-        ResponseEntity reponse = new ResponseEntity(HttpStatus.BAD_REQUEST);
-
         try
         {
-
             switch (httpMethod)
             {
                 case GET:
@@ -40,15 +41,10 @@ public class ConsumerAPI {
                     break;
 
             }
-
-
-
-
             statusCode = reponse.getStatusCodeValue();
         }
         catch (Exception e)
         {
-            //make a log
             statusCode = 0;
         }
         finally
@@ -57,6 +53,10 @@ public class ConsumerAPI {
                 case 200:
                     responseObeject.statusCode=statusCode;
                     responseObeject.object = toJavaObject(reponse.getBody());
+                    break;
+                case 401:
+                    responseObeject.statusCode=statusCode;
+                    responseObeject.object = toErrorObject(reponse.getBody());
                     break;
                 case 404:
                     responseObeject.statusCode=statusCode;
@@ -81,44 +81,31 @@ public class ConsumerAPI {
     }
 
     private Object toJavaObject(Object object){
-
-
         return object;
-
     }
 
     private Object toErrorObject(Object object){
-
-        Validation validation = new Gson().fromJson(object.toString(), Validation.class);
-
-        return validation;
-
+        return  new Gson().fromJson(object.toString(), Validation.class);
     }
 
     //responses
-    public ResponseObeject get(String uri, Object object){
-        convertObject = object;
+    public ResponseObeject get(String uri){
         return comsumer(uri,HttpMethod.GET);
     }
 
-    public ResponseObeject post(String uri, Object postBody, Object object){
-        convertObject = object;
+    public ResponseObeject post(String uri, Object postBody){
         body = postBody;
         return comsumer(uri,HttpMethod.POST);
     }
 
-    public ResponseObeject put(String uri, Object putBody, Object object){
-        convertObject = object;
+    public ResponseObeject put(String uri, Object putBody){
         body = putBody;
         return comsumer(uri,HttpMethod.PUT);
     }
 
-    public ResponseObeject delete(String uri, Object deleteBody, Object object){
-        convertObject = object;
+    public ResponseObeject delete(String uri, Object deleteBody){
         body = deleteBody;
         return comsumer(uri,HttpMethod.DELETE);
     }
-
-
 
 }

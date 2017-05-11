@@ -2,7 +2,6 @@ package com.thedionisio.dao;
 
 import com.thedionisio.dao.mongoDB.MongoCrud;
 import com.thedionisio.model.dto.Company;
-import com.thedionisio.model.dto.Person;
 import org.bson.Document;
 
 /**

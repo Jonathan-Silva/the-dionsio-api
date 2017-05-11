@@ -1,11 +1,11 @@
 package com.thedionisio.model.dto;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thedionisio.security.Security;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.*;
+import java.util.List;
 
 /**
  * Created by jonathan on 2/25/17.

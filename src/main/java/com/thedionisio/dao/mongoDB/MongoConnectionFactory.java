@@ -1,6 +1,6 @@
 package com.thedionisio.dao.mongoDB;
 
-import com.mongodb.*;
+import com.mongodb.MongoClient;
 
 /**
  * Created by jonathan on 1/23/17.

@@ -4,16 +4,12 @@ package com.thedionisio.util.consumer;
  * Created by jonathan on 3/12/17.
  */
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 public class RestClient {
 
-    private final String server = "http://localhost:4212";
+    private final String server = "http://localhost:4212/";
     private RestTemplate rest;
     private HttpHeaders headers;
     private HttpStatus status;
@@ -26,6 +22,7 @@ public class RestClient {
         headers.add("X-Auth-Token",token);
     }
 
+
     public ResponseEntity get(String uri) {
         HttpEntity<String> requestEntity = new HttpEntity<String>("", headers);
         ResponseEntity<String> responseEntity = rest.exchange(server + uri, HttpMethod.GET, requestEntity, String.class);
@@ -36,7 +33,7 @@ public class RestClient {
 
     public ResponseEntity post(String uri, String body) {
         HttpEntity<String> requestEntity = new HttpEntity<String>(body, headers);
-        ResponseEntity<Object> responseEntity = rest.exchange(server + uri, HttpMethod.POST, requestEntity, Object.class);
+        ResponseEntity<String> responseEntity = rest.exchange(server + uri, HttpMethod.POST, requestEntity, String.class);
         this.setStatus(responseEntity.getStatusCode());
         return responseEntity;
     }
