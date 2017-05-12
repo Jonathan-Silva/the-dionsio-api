@@ -14,14 +14,13 @@ import java.util.List;
 
 public class Person {
 
-
     @Override
     public String toString() {
         return "Person{" +
                 "_id=" + _id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", PASSWORD_SHADOW='" + password + '\'' +
+                ", password='" + password + '\'' +
                 ", birth=" + birth +
                 ", cpf='" + cpf + '\'' +
                 ", sex='" + sex + '\'' +
