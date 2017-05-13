@@ -14,6 +14,7 @@ import java.util.List;
 
 public class Person {
 
+
     @Override
     public String toString() {
         return "Person{" +
@@ -23,6 +24,7 @@ public class Person {
                 ", password='" + password + '\'' +
                 ", birth=" + birth +
                 ", cpf='" + cpf + '\'' +
+                ", picture='" + picture + '\'' +
                 ", sex='" + sex + '\'' +
                 ", genres=" + genres +
                 ", card=" + card +
@@ -36,6 +38,7 @@ public class Person {
     public String password;
     public LocalDate birth;
     public String cpf;
+    public String picture;
     public String sex;
     public List<String> genres;
     public List<Card> card;
