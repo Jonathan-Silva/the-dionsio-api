@@ -1,6 +1,5 @@
 package com.thedionisio.model.bss;
 
-import com.thedionisio.dao.CompanyRepository;
 import com.thedionisio.model.dto.Company;
 import com.thedionisio.util.mongo.Mongo;
 import com.thedionisio.util.verification.Description;
@@ -13,14 +12,12 @@ import java.util.List;
  */
 public class CompanyBss {
 
-    CompanyRepository companyRepository = new CompanyRepository();
+    private CommonPersonCompanyBss commonPersonCompanyBss = new CommonPersonCompanyBss();
 
     public Boolean existingValidation(Company company){
         try
         {
-            List list = (List) companyRepository.findByEmail(company.email);
-
-            return list.size() <= 0;
+            return commonPersonCompanyBss.existingValidation(company.email);
         }
         catch (Exception e )
         {
@@ -31,8 +28,7 @@ public class CompanyBss {
 
     public Document treatResponse(List<Company> companies){
         companies.forEach(c->{
-            c._id = Mongo.treatMongoId.toString(c._id);
-            c.password = Description.PASSWORD_SHADOW;
+            c.treatResponse();
         });
 
         Document response = new Document();

@@ -20,7 +20,7 @@ public class TokenUtils {
 
     private String secret = "THEDIONISIO@VICODIN";
 
-    private Long expiration = 12000L;
+    private Long expiration = 300L;
 
     public String getUsernameFromToken(String token) {
         String username;

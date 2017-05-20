@@ -2,6 +2,8 @@ package com.thedionisio.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thedionisio.security.Security;
+import com.thedionisio.util.mongo.Mongo;
+import com.thedionisio.util.verification.Description;
 import com.thedionisio.util.verification.Validation;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -81,6 +83,12 @@ public class Person {
             this.genres!=null &&
             Validation.document.isValidCPF(this.cpf);
 
+    }
+
+    public Person treatResponse(){
+        this._id = Mongo.treatMongoId.toString(this._id);
+        this.password = Description.PASSWORD_SHADOW;
+        return  this;
     }
 
     @JsonIgnore

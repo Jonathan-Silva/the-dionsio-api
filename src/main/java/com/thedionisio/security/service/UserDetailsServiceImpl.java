@@ -1,6 +1,8 @@
 package com.thedionisio.security.service;
 
+import com.thedionisio.dao.CompanyRepository;
 import com.thedionisio.dao.PersonRepository;
+import com.thedionisio.model.dto.Company;
 import com.thedionisio.model.dto.Person;
 import com.thedionisio.security.model.SpringSecurityUser;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -19,6 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Person person = null;
+        Company company = null;
 
         try
         {
@@ -27,14 +30,20 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
         catch (Exception e)
         {
-
+            System.out.println("log de erro de pessoa");
         }
 
-        if (person == null)
+        try
         {
-            throw new UsernameNotFoundException(String.format("No appUser found with email '%s'.", person.email));
+            List<Company> companie = (List<Company>) new CompanyRepository().findByEmail(email);
+            company = companie.get(0);
         }
-        else
+        catch (Exception e)
+        {
+            System.out.println("log de erro de companie");
+        }
+
+        if (person != null)
         {
             try
             {
@@ -52,6 +61,29 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 System.out.println(e.getCause());
                 return null;
             }
+        }
+        else if (company != null)
+        {
+            try
+            {
+                return new SpringSecurityUser(
+                        company._id,
+                        company.email,
+                        company.BCryptEncoderPassword(),
+                        company.name,
+                        null,
+                        AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER,ROLE_ADMIN")
+                );
+            }
+            catch (Exception e )
+            {
+                System.out.println(e.getCause());
+                return null;
+            }
+        }
+        else
+        {
+            throw new UsernameNotFoundException(String.format("No appUser found with email '%s'.", email));
         }
     }
 

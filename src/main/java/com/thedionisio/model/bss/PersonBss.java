@@ -1,6 +1,5 @@
 package com.thedionisio.model.bss;
 
-import com.thedionisio.dao.PersonRepository;
 import com.thedionisio.model.dto.Person;
 import com.thedionisio.util.mongo.Mongo;
 import com.thedionisio.util.verification.Description;
@@ -12,14 +11,12 @@ import java.util.List;
  * Created by jonathan on 3/6/17.
  */
 public class PersonBss {
-    private PersonRepository personRepository = new PersonRepository();
+    private CommonPersonCompanyBss commonPersonCompanyBss = new CommonPersonCompanyBss();
 
     public Boolean existingValidation(Person person){
         try
         {
-           List list = (List) personRepository.findByEmail(person.email);
-
-            return list.size() <= 0;
+            return commonPersonCompanyBss.existingValidation(person.email);
         }
         catch (Exception e )
         {
@@ -30,8 +27,7 @@ public class PersonBss {
 
     public Document treatResponse(List<Person> people){
         people.forEach(p->{
-            p._id = Mongo.treatMongoId.toString(p._id);
-            p.password = Description.PASSWORD_SHADOW;
+            p.treatResponse();
         });
 
         Document response = new Document();

@@ -2,6 +2,10 @@ package com.thedionisio.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thedionisio.security.Security;
+import com.thedionisio.util.mongo.Mongo;
+import com.thedionisio.util.verification.Description;
+import com.thedionisio.util.verification.Validation;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
 
@@ -38,7 +42,7 @@ public class Company {
 
     @JsonIgnore
     public String isRequered(){
-        return "< name, email, PASSWORD_SHADOW, cnpj >";
+        return "< name, email, password, cnpj >";
     }
 
     @JsonIgnore
@@ -54,9 +58,22 @@ public class Company {
         return  this.name!=null  &&
                 this.email!=null &&
                 this.password!=null &&
-                this.cnpj!=null;
+                this.cnpj!=null ;
+        //&& Validation.document.isCNPJ(this.cnpj)
     }
     @JsonIgnore
     public String attributeIdentifier(){return "email < ";}
+
+    @JsonIgnore
+    public String BCryptEncoderPassword() {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        return bCryptPasswordEncoder.encode(this.password);
+    }
+
+    public Company treatResponse (){
+        this._id = Mongo.treatMongoId.toString(this._id);
+        this.password = Description.PASSWORD_SHADOW;
+        return this;
+    }
 
 }

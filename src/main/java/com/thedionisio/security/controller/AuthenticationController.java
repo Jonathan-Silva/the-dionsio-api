@@ -1,6 +1,8 @@
 package com.thedionisio.security.controller;
 
 
+import com.thedionisio.model.bss.CommonPersonCompanyBss;
+import com.thedionisio.model.dto.Login;
 import com.thedionisio.security.AppConstant;
 import com.thedionisio.security.TokenUtils;
 import com.thedionisio.security.model.AuthenticationRequest;
@@ -38,7 +40,7 @@ public class AuthenticationController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> authenticationRequest(@RequestBody AuthenticationRequest authenticationRequest)
             throws AuthenticationException {
-
+        Login login = new Login();
 
         Authentication authentication = this.authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -46,14 +48,15 @@ public class AuthenticationController {
                         authenticationRequest.getPassword()
                 )
         );
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-
         UserDetails userDetails = this.userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
-        String token = this.tokenUtils.generateToken(userDetails);
 
+        login.token = this.tokenUtils.generateToken(userDetails);
+        login.entity = new CommonPersonCompanyBss().findPersonOrCompany(authenticationRequest.getUsername());
 
-        return ResponseEntity.ok(new AuthenticationResponse(token));
+        return ResponseEntity.ok(login);
     }
 
     @RequestMapping(value = "/refresh", method = RequestMethod.GET)
