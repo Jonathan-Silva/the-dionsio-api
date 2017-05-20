@@ -2,7 +2,6 @@ package com.thedionisio.model.ctrl;
 
 import com.thedionisio.dao.PersonRepository;
 import com.thedionisio.model.bss.PersonBss;
-import com.thedionisio.model.dto.Company;
 import com.thedionisio.model.dto.Person;
 import com.thedionisio.util.mongo.Mongo;
 import com.thedionisio.util.verification.Validation;

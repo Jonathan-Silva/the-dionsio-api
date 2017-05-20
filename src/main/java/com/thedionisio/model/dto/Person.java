@@ -7,7 +7,6 @@ import com.thedionisio.util.verification.Description;
 import com.thedionisio.util.verification.Validation;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.swing.table.TableRowSorter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

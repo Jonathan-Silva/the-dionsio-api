@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thedionisio.security.Security;
 import com.thedionisio.util.mongo.Mongo;
 import com.thedionisio.util.verification.Description;
-import com.thedionisio.util.verification.Validation;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;

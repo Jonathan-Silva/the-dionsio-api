@@ -1,16 +1,10 @@
 package com.thedionisio.dao;
 
-import com.sun.corba.se.impl.orbutil.threadpool.TimeoutException;
 import com.thedionisio.dao.mongoDB.MongoCrud;
-import com.thedionisio.model.dto.Company;
-import com.thedionisio.model.dto.Event;
-import com.thedionisio.model.dto.Person;
 import com.thedionisio.util.verification.RequestValidation;
 import com.thedionisio.util.verification.Validation;
 import org.bson.Document;
 import org.springframework.http.ResponseEntity;
-
-import java.util.List;
 
 /**
  * Created by jonathan on 3/3/17.

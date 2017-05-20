@@ -1,6 +1,5 @@
 package com.thedionisio.util;
 
-import com.thedionisio.security.Encryption;
 import com.thedionisio.security.Security;
 import org.junit.Test;
 

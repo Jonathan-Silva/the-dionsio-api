@@ -1,8 +1,6 @@
 package com.thedionisio.dao.mongo;
 
 import com.mongodb.Block;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.MongoIterable;
 import com.thedionisio.dao.mongoDB.MongoConnection;
 import com.thedionisio.dao.mongoDB.MongoConnectionFactory;
 import org.junit.Test;

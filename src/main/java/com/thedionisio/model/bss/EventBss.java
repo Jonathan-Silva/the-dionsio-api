@@ -4,6 +4,7 @@ package com.thedionisio.model.bss;
 import com.thedionisio.model.dto.Event;
 import com.thedionisio.util.mongo.Mongo;
 import org.bson.Document;
+
 import java.util.ArrayList;
 import java.util.List;
 

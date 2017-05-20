@@ -1,8 +1,6 @@
 package com.thedionisio.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.thedionisio.security.Security;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.bson.types.ObjectId;
 
 import java.util.List;

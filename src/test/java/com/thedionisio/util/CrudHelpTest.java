@@ -2,7 +2,6 @@ package com.thedionisio.util;
 
 import com.thedionisio.dao.SimpleCrudRepository;
 import com.thedionisio.model.dto.Person;
-import com.thedionisio.security.Encryption;
 import com.thedionisio.security.Security;
 import org.bson.Document;
 import org.springframework.http.ResponseEntity;

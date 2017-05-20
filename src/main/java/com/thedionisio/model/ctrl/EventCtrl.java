@@ -3,10 +3,10 @@ package com.thedionisio.model.ctrl;
 import com.thedionisio.dao.EventRepository;
 import com.thedionisio.model.bss.EventBss;
 import com.thedionisio.model.dto.*;
-import com.thedionisio.model.dto.Event;
 import com.thedionisio.util.verification.Validation;
 import org.bson.Document;
 import org.springframework.http.ResponseEntity;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
