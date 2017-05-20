@@ -19,4 +19,6 @@ public class CompanyRepository extends SimpleCrudRepository {
         query.put("email",email);
         return mongoCrud.find(collection,new Company(),query,new Document(),0);
     }
+
+
 }

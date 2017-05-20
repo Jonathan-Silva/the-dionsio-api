@@ -22,7 +22,8 @@ public class EventResource {
 
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     public Object getOne(@PathVariable Object id)  {
-        return eventCtrl.findOne(id);
+        return  eventCtrl.asd();
+       // return eventCtrl.findOne(id);
     }
 
     @RequestMapping(method = RequestMethod.POST)

@@ -1,6 +1,8 @@
 package com.thedionisio.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.thedionisio.model.bss.CompanyBss;
+import com.thedionisio.util.mongo.Mongo;
 import org.bson.types.ObjectId;
 
 import java.util.List;
@@ -29,7 +31,7 @@ public class Event {
     }
 
     public Object _id;
-    public Object _idCompany;
+    public String _idCompany;
     public String name;
     public String description;
     public DateTimeControl dateTimeControl;
@@ -44,9 +46,7 @@ public class Event {
 
     @JsonIgnore
     public Event treatCreate(){
-        this._idCompany = new ObjectId(_idCompany.toString());
         this.isActive = true;
-
         return this;
     }
 
@@ -54,11 +54,21 @@ public class Event {
     public String isRequered(){
         return " < _idCompany, _idPlace, name >";
     }
+
     @JsonIgnore()
     public Boolean createValidation(){
-        return  this.name!=null;
+        System.out.println(new CompanyBss().isActiveCompany(this._idCompany));
+        return  this.name!=null && new CompanyBss().isActiveCompany(this._idCompany);
     }
+
     @JsonIgnore()
     public String attributeIdentifier(){return "email < ";}
+
+    @JsonIgnore()
+    public Event treatResponse()
+    {
+        this._id = Mongo.treatMongoId.toString(this._id);
+        return this;
+    }
 
 }

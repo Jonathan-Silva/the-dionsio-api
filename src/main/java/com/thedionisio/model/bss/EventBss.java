@@ -13,11 +13,13 @@ import java.util.List;
  */
 public class EventBss {
     public Boolean existingValidation(String collection, Event event) {
-        try {
+        try
+        {
             List list = new ArrayList();
 
             return list.size() <= 0;
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             return null;
         }
 
@@ -26,8 +28,7 @@ public class EventBss {
 
     public Document treatResponse(List<Event> events) {
         events.forEach(e -> {
-            e._id = Mongo.treatMongoId.toString(e._id);
-            e._idCompany = Mongo.treatMongoId.toString(e._idCompany);
+             e.treatResponse();
         });
 
         Document response = new Document();
