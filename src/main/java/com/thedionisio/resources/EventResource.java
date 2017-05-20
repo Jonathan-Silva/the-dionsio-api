@@ -15,7 +15,6 @@ public class EventResource {
 
     private EventCtrl eventCtrl = new EventCtrl();
 
-
     @RequestMapping(method = RequestMethod.GET)
     public Object get() throws IllegalAccessException {
         return eventCtrl.find();
@@ -25,7 +24,6 @@ public class EventResource {
     public Object getOne(@PathVariable Object id)  {
         return eventCtrl.findOne(id);
     }
-
 
     @RequestMapping(method = RequestMethod.POST)
     public Object create(@RequestBody Event event)  {
@@ -39,10 +37,8 @@ public class EventResource {
 
     @RequestMapping(method = RequestMethod.DELETE)
     public Object remove(@RequestBody Event Event) {
-        return this.eventCtrl.remove(Event);
+        return this.eventCtrl.removeOne(Event);
     }
-
-
 
 }
 

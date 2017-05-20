@@ -18,6 +18,7 @@ public class PersonResource {
 
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     public Object getOne(@PathVariable Object id)  {
+        //return com.thedionisio.util.verification.ValidationObject.document.isValidCPF(id.toString());
         return personCtrl.findOne(id);
     }
 
@@ -37,7 +38,7 @@ public class PersonResource {
     @RequestMapping(method = RequestMethod.DELETE)
     public Object remove(@RequestBody Person person) {
 
-            return this.personCtrl.remove(person);
+            return this.personCtrl.removeOne(person);
 
     }
 

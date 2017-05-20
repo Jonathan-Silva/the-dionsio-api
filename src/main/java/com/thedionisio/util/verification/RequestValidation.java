@@ -1,6 +1,6 @@
 package com.thedionisio.util.verification;
 
-import com.thedionisio.model.dto.Validation;
+import com.thedionisio.model.dto.ValidationObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -9,87 +9,88 @@ import org.springframework.http.ResponseEntity;
  */
 public class RequestValidation {
 
-    private Validation validation = new Validation();
+    private ValidationObject validationObject = new ValidationObject();
 
-    private Validation notContainsID()
+    private ValidationObject notContainsID()
     {
-        validation.status = HttpStatus.NOT_ACCEPTABLE;
-        validation.description = Description.NOT_FOUND_INFO;
-        validation.additional =Description.REQUIRED_ID;
+        validationObject.status = HttpStatus.NOT_ACCEPTABLE;
+        validationObject.description = Description.NOT_FOUND_INFO;
+        validationObject.additional =Description.REQUIRED_ID;
 
-       return validation;
+       return validationObject;
     }
-    private Validation notContainsFields(String fields)
+    private ValidationObject notContainsFields(String fields)
     {
-        validation.status = HttpStatus.NOT_ACCEPTABLE;
-        validation.description = Description.NOT_FOUND_INFO;
-        validation.additional = Description.REQUIRED_FIELDS + fields;
+        validationObject.status = HttpStatus.NOT_ACCEPTABLE;
+        validationObject.description = Description.NOT_FOUND_INFO;
+        validationObject.additional = Description.REQUIRED_FIELDS + fields;
 
-        return validation;
+        return validationObject;
     }
-    private Validation notDataBase()
+    private ValidationObject notDataBase()
     {
-        validation.status = HttpStatus.INSUFFICIENT_STORAGE;
-        validation.description = Description.PROBLEMS_DATABASE;
-        validation.additional = Description.CHECK_MONGO_CONNECTION;
+        validationObject.status = HttpStatus.INSUFFICIENT_STORAGE;
+        validationObject.description = Description.PROBLEMS_DATABASE;
+        validationObject.additional = Description.CHECK_MONGO_CONNECTION;
 
-        return validation;
+        return validationObject;
     }
-    private Validation existing(String field)
+    private ValidationObject existing(String field)
     {
-        validation.status = HttpStatus.NOT_ACCEPTABLE;
-        validation.description = Description.REGISTER_EXISTED;
-        validation.additional = field + Description.FIELD_EXISTED;
+        validationObject.status = HttpStatus.NOT_ACCEPTABLE;
+        validationObject.description = Description.REGISTER_EXISTED;
+        validationObject.additional = field + Description.FIELD_EXISTED;
 
-        return validation;
+        return validationObject;
     }
-    private Validation notFound()
+    private ValidationObject notFound()
     {
-        validation.status = HttpStatus.NOT_FOUND;
-        validation.description = Description.REGISTER_NOT_FOUND;
-        validation.additional = Description.NOT_REGISTERED;
+        validationObject.status = HttpStatus.NOT_FOUND;
+        validationObject.description = Description.REGISTER_NOT_FOUND;
+        validationObject.additional = Description.NOT_REGISTERED;
 
-        return validation;
+        return validationObject;
     }
-    private Validation notAutorized()
+    private ValidationObject notAutorized()
     {
-        validation.status = HttpStatus.UNAUTHORIZED;
-        validation.description = Description.REQUEST_NOT_AUTHORIZED;
-        validation.additional = Description.BAD_CREDENTIALS;
+        validationObject.status = HttpStatus.UNAUTHORIZED;
+        validationObject.description = Description.REQUEST_NOT_AUTHORIZED;
+        validationObject.additional = Description.BAD_CREDENTIALS;
 
-        return validation;
+        return validationObject;
     }
-    private Validation registryDeleted(String id)
+    private ValidationObject registryDeleted(String id)
     {
-        validation.status = HttpStatus.OK;
-        validation.description = Description.REGISTER_DELETED;
-        validation.additional = Description.REFERENCE_ID + id;
+        validationObject.status = HttpStatus.OK;
+        validationObject.description = Description.REGISTER_DELETED;
+        validationObject.additional = Description.REFERENCE_ID + id;
 
-        return validation;
+        return validationObject;
     }
-    private Validation registryCreate(String id)
+    private ValidationObject registryCreate(String id)
     {
-        validation.status = HttpStatus.OK;
-        validation.description = Description.REGISTER_CREATED;
-        validation.additional = Description.REFERENCE_ID + id;
+        validationObject.status = HttpStatus.OK;
+        validationObject.description = Description.REGISTER_CREATED;
+        validationObject.additional = Description.REFERENCE_ID + id;
 
-        return validation;
+        return validationObject;
     }
-    private Validation registryUpdate(String id)
+    private ValidationObject registryUpdate(String id)
     {
-        validation.status = HttpStatus.OK;
-        validation.description = Description.REGISTER_UPDATED;
-        validation.additional = Description.REFERENCE_ID + id;
+        validationObject.status = HttpStatus.OK;
+        validationObject.description = Description.REGISTER_UPDATED;
+        validationObject.additional = Description.REFERENCE_ID + id;
 
-        return validation;
+        return validationObject;
     }
 
     /**
-     * Global validation for _ID
+     * Global validationObject for _ID
      * @param _id
      * @return
      */
     public Boolean idValidation(Object _id){
+
         return _id != null;
     }
 

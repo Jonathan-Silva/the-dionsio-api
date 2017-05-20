@@ -2,9 +2,12 @@ package com.thedionisio.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thedionisio.security.Security;
+import com.thedionisio.util.verification.Validation;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import javax.swing.table.TableRowSorter;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,7 +51,7 @@ public class Person {
 
     @JsonIgnore
     public String isRequered(){
-        return "< name, email, PASSWORD_SHADOW, genres >";
+        return "< name, email, password, genres, cpf >";
     }
 
     @JsonIgnore
@@ -56,6 +59,16 @@ public class Person {
 
         this.password = Security.encryption.generateHash(this.password);
         this.isActive = true;
+        try
+        {
+            List<String> genresLowerCase = new ArrayList<>();
+            this.genres.forEach(g->genresLowerCase.add(g.toLowerCase()));
+            this.genres = genresLowerCase;
+        }
+        catch (Exception e)
+        {
+            System.out.println("log de erro genres");
+        }
 
         return this;
     }
@@ -65,7 +78,9 @@ public class Person {
      return this.name!=null  &&
             this.email!=null &&
             this.password!=null &&
-            this.genres!=null;
+            this.genres!=null &&
+            Validation.document.isValidCPF(this.cpf);
+
     }
 
     @JsonIgnore

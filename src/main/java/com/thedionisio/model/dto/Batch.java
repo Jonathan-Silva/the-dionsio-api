@@ -9,8 +9,7 @@ public class Batch {
     @Override
     public String toString() {
         return "Batch{" +
-                "_id=" + _id +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", sector='" + sector + '\'' +
                 ", dateTimeControl=" + dateTimeControl +
@@ -22,7 +21,6 @@ public class Batch {
                 '}';
     }
 
-    public Object _id;
     public String name;
     public String description;
     public String sector;

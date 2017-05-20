@@ -1,7 +1,12 @@
 package com.thedionisio.dao;
 
+import com.sun.corba.se.impl.orbutil.threadpool.TimeoutException;
 import com.thedionisio.dao.mongoDB.MongoCrud;
+import com.thedionisio.model.dto.Company;
+import com.thedionisio.model.dto.Event;
+import com.thedionisio.model.dto.Person;
 import com.thedionisio.util.verification.RequestValidation;
+import com.thedionisio.util.verification.Validation;
 import org.bson.Document;
 import org.springframework.http.ResponseEntity;
 
@@ -16,92 +21,137 @@ public class SimpleCrudRepository {
 
     private MongoCrud simpleCrud = new MongoCrud();
 
-    public ResponseEntity create(String collection, Object object){
+    public ResponseEntity create(String collection, Object object) {
 
-        if(simpleCrud.create(collection, object))
-        {
+        if (simpleCrud.create(collection, object)) {
             return validation.THAT_OK(true);
         }
         return validation.NOT_DATA_BASE();
     }
 
-    public Object find(String collection, Object object, Document query, Document sort){
+    public Object find(String collection, Object object, Document query, Document sort, Integer limit) {
 
-        Object result = simpleCrud.find(collection, object, new Document(), new Document(), 0);
+        Object result = simpleCrud.find(collection, object, query, sort, limit);
 
-        if(result != null)
-        {
-            return findRule(result);
+        if (result != null) {
+            return result;
         }
         return validation.NOT_DATA_BASE();
     }
 
-    public Object findOne(String collection, Object id, Object object){
 
-        Object result = simpleCrud.findOne(collection,id,object);
-
-        if(result != null)
+    public Object findOne(String collection, Object id, Object objectBase){
+        try
         {
-            return findRule(result);
+            if(id==null)return Validation.resquest.NOT_CONTAINS_ID();
+
+            return findOneBlock(collection,id, objectBase);
+
         }
-        return validation.NOT_DATA_BASE();
-      }
-
-    public Object update(String collection, Object id, Object object){
-
-        Object item = simpleCrud.update(collection,id,object);
-        if(item != null)
+        catch (Exception e)
         {
-            if (!item.equals(false))
+            return Validation.resquest.NOT_DATA_BASE();
+        }
+    }
+
+
+    private Object findOneBlock(String collection, Object id, Object object) {
+
+        Object result = simpleCrud.findOne(collection, id, object);
+
+        if (result != null) {
+            return result;
+        }
+        return validation.ITEM_NOT_FOUND(id);
+    }
+
+    public Object update(Object updateObject, Object id, String collection) {
+
+        try
+        {
+            if (id==null) return Validation.resquest.NOT_CONTAINS_ID();
+
+            Object objectResponse = updateBlock(collection, id.toString(), updateObject);
+            try
             {
+                if ((Boolean) objectResponse)
+                {
+                    return Validation.resquest.REGISTRY_UPDATE(id.toString());
+                }
+                return Validation.resquest.REQUEST_NOT_AUTHORIZED();
+            }
+            catch (Exception e)
+            {
+                return objectResponse;
+            }
+        }
+        catch (Exception e) {
+            return Validation.resquest.NOT_DATA_BASE();
+        }
+    }
+
+    public Object updateBlock(String collection, Object id, Object object) {
+
+        Object item = simpleCrud.update(collection, id, object);
+        if (item != null) {
+            if (!item.equals(false)) {
                 return true;
             }
-            return  validation.ITEM_NOT_FOUND(item);
+            return validation.ITEM_NOT_FOUND(item);
         }
         return validation.NOT_DATA_BASE();
     }
 
-    public Object removeOne(String collection, Object id){
+    public Object removeOne(Object id, String collection) {
+        try {
+            if (Validation.resquest.idValidation(id.toString())) {
+                Object objectResponse = removeBlock(collection, id.toString());
 
-        Object result = simpleCrud.removeOne(collection,id);
+                ResponseEntity<Object> responseEntity = (ResponseEntity<Object>) objectResponse;
 
-        if (result!=null)
-        {
-            if(Integer.valueOf(result.toString())>0)
-            {
-                return validation.THAT_OK(true);
+                try {
+                    if ((Boolean) responseEntity.getBody()) {
+                        return Validation.resquest.REGISTRY_DELETED(id.toString());
+                    }
+                } catch (Exception e) {
+                    return responseEntity;
+                }
             }
-            return  validation.ITEM_NOT_FOUND(result);
+            return Validation.resquest.NOT_CONTAINS_ID();
+        } catch (Exception e) {
+            return Validation.resquest.NOT_DATA_BASE();
         }
-        return validation.NOT_DATA_BASE();
+    }
 
-   }
+    private Object removeBlock(String collection, Object id) {
 
-    public Object remove(String collection, Document where){
+        Object result = simpleCrud.removeOne(collection, id);
 
-        Object result = simpleCrud.remove(collection,where);
-
-        if (result!=null)
-        {
-            if(Integer.valueOf(result.toString())>0)
-            {
+        if (result != null) {
+            if (Integer.valueOf(result.toString()) > 0) {
                 return validation.THAT_OK(true);
             }
-            return  validation.ITEM_NOT_FOUND(result);
+            return validation.ITEM_NOT_FOUND(result);
         }
         return validation.NOT_DATA_BASE();
 
     }
 
-   public Object findRule(Object result)
-   {
-       List listResult = (List) result;
-       if (listResult.size() > 0)
-       {
-           Document persons = new  Document();
-           persons.put("persons",listResult);
-           return validation.THAT_OK(listResult);
-       }
-       return  validation.ITEM_NOT_FOUND(false);
-   }
+    public Object remove(String collection, Document where) {
+
+        Object result = simpleCrud.remove(collection, where);
+
+        if (result != null) {
+            if (Integer.valueOf(result.toString()) > 0) {
+                return validation.THAT_OK(true);
+            }
+            return validation.ITEM_NOT_FOUND(result);
+        }
+        return validation.NOT_DATA_BASE();
+
+    }
+
+
+
+
 }

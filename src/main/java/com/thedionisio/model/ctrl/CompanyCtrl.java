@@ -58,7 +58,7 @@ public class CompanyCtrl {
 
     public Object find(){
 
-        Object objectResponse = companyRepository.find(collection,new Company(), new Document(), new Document());
+        Object objectResponse = companyRepository.find(collection,new Company(), new Document(), new Document(),0);
 
         try
         {
@@ -91,60 +91,12 @@ public class CompanyCtrl {
     }
 
     public Object update(Company company){
+        return companyRepository.update(company,company._id,collection);
 
-        try
-        {
-            if(Validation.resquest.idValidation(company._id))
-            {
-                Object objectResponse = companyRepository.update(collection, company._id, company);
-                try
-                {
-                    if((Boolean) objectResponse)
-                    {
-                        return Validation.resquest.REGISTRY_CREATE(company._id);
-                    }
-                }catch (Exception e)
-                {
-                    return objectResponse;
-                }
-
-            }
-            return Validation.resquest.NOT_CONTAINS_ID();
-        }
-        catch (Exception e)
-        {
-            return Validation.resquest.NOT_DATA_BASE();
-        }
     }
 
-    public Object remove(Company company){
-        try
-        {
-            if(Validation.resquest.idValidation(company._id))
-            {
-                Object objectResponse = companyRepository.removeOne(collection, company._id);
-
-                ResponseEntity<Object> responseEntity = (ResponseEntity<Object>) objectResponse;
-
-                try
-                {
-                    if ((Boolean)responseEntity.getBody())
-                    {
-                        return  Validation.resquest.REGISTRY_DELETED(company._id);
-                    }
-                }
-                catch (Exception e)
-                {
-                    return responseEntity;
-                }
-            }
-            return Validation.resquest.NOT_CONTAINS_ID();
-        }
-        catch (Exception e)
-        {
-            return Validation.resquest.NOT_DATA_BASE();
-        }
-
+    public Object removeOne(Company company){
+       return  companyRepository.removeOne(company._id,collection);
     }
 
 

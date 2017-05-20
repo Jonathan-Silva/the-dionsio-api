@@ -36,9 +36,9 @@ public class CompanyResource {
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
-    public Object remove(@RequestBody Company company) {
+    public Object removeOne(@RequestBody Company company) {
 
-        return this.companyCtrl.remove(company);
+        return companyCtrl.removeOne(company);
 
     }
 }

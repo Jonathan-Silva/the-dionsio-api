@@ -5,7 +5,7 @@ package com.thedionisio.util.verification;
  */
 public interface Description {
      String PROBLEMS_DATABASE = "problems in the database";
-     String NOT_FOUND_INFO ="required information not declared";
+     String NOT_FOUND_INFO ="required information not declared or information not valid";
      String REGISTER_EXISTED = "register already exists";
      String REGISTER_NOT_FOUND = "register not found";
      String REGISTER_DELETED = "register deleted successfully";

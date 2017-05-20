@@ -2,6 +2,7 @@ package com.thedionisio.model.ctrl;
 
 import com.thedionisio.dao.PersonRepository;
 import com.thedionisio.model.bss.PersonBss;
+import com.thedionisio.model.dto.Company;
 import com.thedionisio.model.dto.Person;
 import com.thedionisio.util.mongo.Mongo;
 import com.thedionisio.util.verification.Validation;
@@ -29,8 +30,7 @@ public class PersonCtrl {
               if (personBss.existingValidation(person))
               {
                   ResponseEntity responseEntity = personRepository.create(collection, person.treatCreate());
-                  try
-                  {
+                  try                  {
                       if (Boolean.parseBoolean(responseEntity.getBody().toString()))
                       {
                         List<Person> people = (List<Person>) personRepository.findByEmail(person.email);
@@ -57,92 +57,38 @@ public class PersonCtrl {
 
     public Object find(){
 
-        Object objectResponse = personRepository.find(collection,new Person(), new Document(), new Document());
-
+        Object objectFind  = personRepository.find(collection,new Person(), new Document(), new Document(),0);
         try
         {
-            ResponseEntity<Object> responseEntity = (ResponseEntity<Object>) objectResponse;
-            List<Person> person = (List<Person>) responseEntity.getBody();
-            return personBss.treatResponse(person);
+            List<Person> events = (List<Person>) objectFind;
+            return personBss.treatResponse(events);
         }
         catch (Exception e)
         {
-            return objectResponse;
+            return objectFind;
         }
+
     }
 
     public Object findOne(Object id){
+        Object objectFind  = personRepository.findOne(collection,id,new Person());
         try
         {
-            if(Validation.resquest.idValidation(id))
-            {
-                Object objectResponse = personRepository.findOne(collection,id, new Person());
-                ResponseEntity<Object> responseEntity = (ResponseEntity<Object>) objectResponse;
-                List<Person> person = (List<Person>) responseEntity.getBody();
-                return personBss.treatResponse(person);
-            }
-            return Validation.resquest.NOT_CONTAINS_ID();
+            List<Person> events = (List<Person>) objectFind;
+            return personBss.treatResponse(events);
         }
         catch (Exception e)
         {
-            return Validation.resquest.NOT_DATA_BASE();
+            return objectFind;
         }
     }
 
     public Object update(Person person){
+        return personRepository.update(person,person._id,collection);
 
-       try
-       {
-           if(Validation.resquest.idValidation(person._id))
-           {
-               Object objectResponse = personRepository.update(collection, person._id, person);
-              try
-              {
-                  if((Boolean) objectResponse)
-                  {
-                      return Validation.resquest.REGISTRY_CREATE(person._id);
-                  }
-              }catch (Exception e)
-              {
-                  return objectResponse;
-              }
-
-           }
-           return Validation.resquest.NOT_CONTAINS_ID();
-       }
-       catch (Exception e)
-       {
-           return Validation.resquest.NOT_DATA_BASE();
-       }
     }
 
-    public Object remove(Person person){
-       try
-       {
-           if(Validation.resquest.idValidation(person._id))
-           {
-               Object objectResponse = personRepository.removeOne(collection, person._id);
-
-               ResponseEntity<Object> responseEntity = (ResponseEntity<Object>) objectResponse;
-
-               try
-               {
-                    if ((Boolean)responseEntity.getBody())
-                    {
-                        return  Validation.resquest.REGISTRY_DELETED(person._id);
-                    }
-               }
-               catch (Exception e)
-               {
-                   return responseEntity;
-               }
-           }
-           return Validation.resquest.NOT_CONTAINS_ID();
-       }
-       catch (Exception e)
-       {
-           return Validation.resquest.NOT_DATA_BASE();
-       }
-
+    public Object removeOne(Person person){
+        return  personRepository.removeOne(person._id,collection);
     }
 }

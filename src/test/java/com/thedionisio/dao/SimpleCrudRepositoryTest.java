@@ -44,15 +44,15 @@ public class SimpleCrudRepositoryTest {
 
         Document where = new Document();
         where.put("email","alan@turing.com");
-        objectResponse = simpleCrudRepository.find(collection,new Person(),where,new Document());
+        objectResponse = simpleCrudRepository.find(collection,new Person(),where,new Document(), 0);
         ResponseEntity<Object> responseRead = (ResponseEntity<Object>) objectResponse;
         List<Person> persons = (List<Person>) responseRead.getBody();
         isRead = persons.get(0).isActive;
 
         person.name = "Turing";
         person._id = persons.get(0)._id.toString().replace("{$oid=","").replace("}","");
-        simpleCrudRepository.update(collection, person._id, person);
-        objectResponse = simpleCrudRepository.find(collection,new Person(),where,new Document());
+        simpleCrudRepository.update(person,person._id,collection);
+        objectResponse = simpleCrudRepository.find(collection,new Person(),where,new Document(), 0);
         responseRead = (ResponseEntity<Object>) objectResponse;
         persons = (List<Person>) responseRead.getBody();
         isUpdate = persons.get(0).name.equals("Turing");
