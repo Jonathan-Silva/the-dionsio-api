@@ -111,7 +111,6 @@ public class TokenUtils {
         return (lastPasswordReset != null && created.before(lastPasswordReset));
     }
 
-
     private Boolean ignoreTokenExpiration(String token) {
         String audience = this.getAudienceFromToken(token);
         return (this.AUDIENCE_TABLET.equals(audience) || this.AUDIENCE_MOBILE.equals(audience));

@@ -67,11 +67,11 @@ public class RequestValidation {
 
         return validationObject;
     }
-    private ValidationObject registryCreate(String id)
+    private ValidationObject registryCreate(Object objectCreate)
     {
         validationObject.status = HttpStatus.OK;
         validationObject.description = Description.REGISTER_CREATED;
-        validationObject.additional = Description.REFERENCE_ID + id;
+        validationObject.additional = objectCreate;
 
         return validationObject;
     }
@@ -124,8 +124,8 @@ public class RequestValidation {
         return new ResponseEntity<Object>(registryDeleted(id.toString()), HttpStatus.OK);
     }
 
-    public ResponseEntity REGISTRY_CREATE(Object id){
-        return new ResponseEntity<Object>(registryCreate(id.toString()), HttpStatus.OK);
+    public ResponseEntity REGISTRY_CREATE(Object objectCreate){
+        return new ResponseEntity<Object>(registryCreate(objectCreate), HttpStatus.OK);
     }
 
     public ResponseEntity REGISTRY_UPDATE(Object id){

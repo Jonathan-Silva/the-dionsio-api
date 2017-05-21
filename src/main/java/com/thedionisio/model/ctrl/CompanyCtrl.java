@@ -34,9 +34,7 @@ public class CompanyCtrl {
                         if (Boolean.parseBoolean(responseEntity.getBody().toString()))
                         {
                             List<Company> companies = (List<Company>) companyRepository.findByEmail(company.email);
-                            System.out.println(companies.get(0)._id);
-                            Object companyResponse = Mongo.treatMongoId.toString(companies.get(0)._id);
-                            return Validation.resquest.REGISTRY_CREATE(companyResponse);
+                            return Validation.resquest.REGISTRY_CREATE(companies.get(0).treatCreate());
                         }
                     }
                     catch (Exception e)

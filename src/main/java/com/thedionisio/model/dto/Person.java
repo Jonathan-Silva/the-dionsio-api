@@ -79,9 +79,8 @@ public class Person {
      return this.name!=null  &&
             this.email!=null &&
             this.password!=null &&
-            this.genres!=null &&
-            Validation.document.isValidCPF(this.cpf);
-
+            this.genres!=null;
+     //&& Validation.document.isValidCPF(this.cpf);
     }
 
     public Person treatResponse(){

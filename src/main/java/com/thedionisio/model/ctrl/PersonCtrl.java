@@ -33,8 +33,7 @@ public class PersonCtrl {
                       if (Boolean.parseBoolean(responseEntity.getBody().toString()))
                       {
                         List<Person> people = (List<Person>) personRepository.findByEmail(person.email);
-                        Object personResponse = Mongo.treatMongoId.toString(people.get(0)._id);
-                        return Validation.resquest.REGISTRY_CREATE(personResponse);
+                        return Validation.resquest.REGISTRY_CREATE(people.get(0).treatResponse());
                       }
                   }
                   catch (Exception e)

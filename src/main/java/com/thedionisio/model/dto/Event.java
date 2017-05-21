@@ -3,7 +3,6 @@ package com.thedionisio.model.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thedionisio.model.bss.CompanyBss;
 import com.thedionisio.util.mongo.Mongo;
-import org.bson.types.ObjectId;
 
 import java.util.List;
 
@@ -20,7 +19,7 @@ public class Event {
                 ", _idCompany=" + _idCompany +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", dateTimeControl=" + dateTimeControl +
+                ", dateTimeRange=" + dateTimeRange +
                 ", genres=" + genres +
                 ", urlBanners=" + urlBanners +
                 ", batches=" + batches +
@@ -34,7 +33,7 @@ public class Event {
     public String _idCompany;
     public String name;
     public String description;
-    public DateTimeControl dateTimeControl;
+    public DateTimeRange dateTimeRange;
     public List<String> genres;
     public List<String> urlBanners;
     public List<Batch> batches;

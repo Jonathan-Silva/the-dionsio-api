@@ -117,9 +117,9 @@ public class EventCtrl {
     public Object asd()
     {
         Event event = new Event();
-        DateTimeControl dateTimeControl = new DateTimeControl();
-        dateTimeControl.start = LocalDateTime.now();
-        dateTimeControl.end = LocalDateTime.now();
+        DateTimeRange dateTimeRange = new DateTimeRange();
+        dateTimeRange.start = LocalDateTime.now();
+        dateTimeRange.end = LocalDateTime.now();
         event._id = "59164e6565bd9015c466113c";
         event._idCompany = "59164e6565bd9015c466113c";
         Place place = new Place();
@@ -136,7 +136,7 @@ public class EventCtrl {
         place.location = location;
         place.zipCode = "16012-625";
         event.place= place;
-        event.dateTimeControl =dateTimeControl;
+        event.dateTimeRange = dateTimeRange;
         event.name="Festa das PRIMA";
         event.description = "Só não pode dar bitoca, porque boca de puta é guaveta da de piroca";
         List<String> genres = new ArrayList<>();
@@ -152,7 +152,7 @@ public class EventCtrl {
         List<Batch> batches = new ArrayList<>();
         Batch batch = new Batch();
         batch.name = "Um Sabio Qualquer";
-        batch.dateTimeControl = dateTimeControl;
+        batch.dateTimeRange = dateTimeRange;
         batch.description ="Thor filho do Brasil";
         batch.limit =50;
         batch.sector = "NO CANTINHO";

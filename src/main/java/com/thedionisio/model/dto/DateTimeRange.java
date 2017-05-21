@@ -5,12 +5,12 @@ import java.time.LocalDateTime;
 /**
  * Created by jonathan on 3/6/17.
  */
-public class DateTimeControl {
+public class DateTimeRange {
 
 
     @Override
     public String toString() {
-        return "DateTimeControl{" +
+        return "DateTimeRange{" +
                 "start=" + start +
                 ", end=" + end +
                 '}';
