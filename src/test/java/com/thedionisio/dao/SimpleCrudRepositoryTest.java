@@ -2,11 +2,13 @@ package com.thedionisio.dao;
 
 import com.thedionisio.dao.mongoDB.MongoCrud;
 import com.thedionisio.model.dto.Person;
+import org.apache.tomcat.jni.Local;
 import org.bson.Document;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.ResponseEntity;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -25,36 +27,35 @@ public class SimpleCrudRepositoryTest {
     private Boolean isDelete;
 
 
-
     @Before
-    public void startTest(){
+    public void startTest() {
 
         Object objectResponse;
         Person person = new Person();
-        person.name="Alan Turing";
-        person.email="alan@turing.com";
-        person.password="turing";
-        person.isActive=true;
+        person.name = "Alan Turing";
+        person.email = "alan@turing.com";
+        person.password = "turing";
+        person.isActive = true;
         objectResponse = simpleCrudRepository.create(collection, person);
         ResponseEntity<Object> responseCreate = (ResponseEntity<Object>) objectResponse;
         isCreate = Boolean.parseBoolean(responseCreate.getBody().toString());
 
         Document where = new Document();
-        where.put("email","alan@turing.com");
-        objectResponse = simpleCrudRepository.find(collection,new Person(),where,new Document(), 0);
+        where.put("email", "alan@turing.com");
+        objectResponse = simpleCrudRepository.find(collection, new Person(), where, new Document(), 0);
         ResponseEntity<Object> responseRead = (ResponseEntity<Object>) objectResponse;
         List<Person> persons = (List<Person>) responseRead.getBody();
         isRead = persons.get(0).isActive;
 
         person.name = "Turing";
-        person._id = persons.get(0)._id.toString().replace("{$oid=","").replace("}","");
-        simpleCrudRepository.update(person,person._id,collection);
-        objectResponse = simpleCrudRepository.find(collection,new Person(),where,new Document(), 0);
+        person._id = persons.get(0)._id.toString().replace("{$oid=", "").replace("}", "");
+        simpleCrudRepository.update(person, person._id, collection);
+        objectResponse = simpleCrudRepository.find(collection, new Person(), where, new Document(), 0);
         responseRead = (ResponseEntity<Object>) objectResponse;
         persons = (List<Person>) responseRead.getBody();
         isUpdate = persons.get(0).name.equals("Turing");
 
-        objectResponse = simpleCrudRepository.remove(collection,where);
+        objectResponse = simpleCrudRepository.remove(collection, where);
         responseRead = (ResponseEntity<Object>) objectResponse;
         isDelete = Boolean.parseBoolean(responseRead.getBody().toString());
 
@@ -63,7 +64,7 @@ public class SimpleCrudRepositoryTest {
 
 
     @Test
-    public void creteTest(){
+    public void creteTest() {
         assertEquals(true, isCreate);
     }
 
@@ -81,11 +82,4 @@ public class SimpleCrudRepositoryTest {
     public void deleteTest() {
         assertEquals(true, isDelete);
     }
-
-
-
-
-
-
-
 }

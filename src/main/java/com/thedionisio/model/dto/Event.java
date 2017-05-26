@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thedionisio.model.bss.CompanyBss;
 import com.thedionisio.util.mongo.Mongo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,6 +46,19 @@ public class Event {
 
     @JsonIgnore
     public Event treatCreate(){
+        this.isActive = true;
+        this.name = this.name.toLowerCase();
+        this.description = this.description.toLowerCase();
+        try
+        {
+            List<String> genresLowerCase = new ArrayList<>();
+            this.genres.forEach(g->genresLowerCase.add(g.toLowerCase()));
+            this.genres = genresLowerCase;
+        }
+        catch (Exception e)
+        {
+            System.out.println("log de erro genres");
+        }
         this.isActive = true;
         return this;
     }

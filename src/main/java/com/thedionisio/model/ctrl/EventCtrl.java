@@ -67,6 +67,19 @@ public class EventCtrl {
         }
     }
 
+    public Object findBy(EventFilterFind eventFilterFind){
+        Object objectFind  = eventRepository.find(collection,new Event(), eventFilterFind.getQueryDocument(), new Document(),0);
+        try
+        {
+            List<Event> events = (List<Event>) objectFind;
+            return eventBss.treatResponse(events);
+        }
+        catch (Exception e)
+        {
+            return objectFind;
+        }
+    }
+
     public Object findOne(Object id){
         Object objectFind  = eventRepository.findOne(collection,id,new Event());
 

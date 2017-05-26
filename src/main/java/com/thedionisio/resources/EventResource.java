@@ -2,6 +2,7 @@ package com.thedionisio.resources;
 
 import com.thedionisio.model.ctrl.EventCtrl;
 import com.thedionisio.model.dto.Event;
+import com.thedionisio.model.dto.EventFilterFind;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -29,6 +30,11 @@ public class EventResource {
     @RequestMapping(method = RequestMethod.POST)
     public Object create(@RequestBody Event event)  {
         return this.eventCtrl.create(event);
+    }
+
+    @RequestMapping(value = "find-by",method = RequestMethod.POST)
+    public Object findBy(@RequestBody EventFilterFind eventFilterFind)  {
+        return this.eventCtrl.findBy(eventFilterFind);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
