@@ -24,7 +24,7 @@ public class MongoConnectionFactoryTest {
            collections.add(collection);
         });
         mongoConnection.client.close();
-    
+
 
 
     }
