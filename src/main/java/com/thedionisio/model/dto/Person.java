@@ -62,7 +62,10 @@ public class Person {
     @JsonIgnore
     public Person treatUpdate(){
 
-        this.password = Security.encryption.generateHash(this.password);
+        if(this.password!=null)
+        {
+            this.password = Security.encryption.generateHash(this.password);
+        }
         if (this.genres!=null)
         {
             try
@@ -103,12 +106,27 @@ public class Person {
      return this.name!=null  &&
             this.email!=null &&
             this.password!=null &&
-            this.genres!=null;
+            this.genres!=null &&
+            !this.name.equals("") &&
+            !this.email.equals("") &&
+            !this.password.equals("") &&
+            isValidEmail();
      //&& Validation.document.isValidCPF(this.cpf);
+    }
+
+    private boolean isValidEmail() {
+        char [] emailChar = this.email.toCharArray();
+
+        return  this.email.contains("@") &&
+                !this.email.contains(" ") &&
+                emailChar[0]!='@' &&
+                emailChar[emailChar.length-1]!='@' &&
+                emailChar.length >3;
     }
 
     @JsonIgnore
     public Boolean updateValidation(){
+
         return this.email==null;
     }
 
