@@ -4,7 +4,6 @@ import com.thedionisio.dao.CompanyRepository;
 import com.thedionisio.model.bss.CompanyBss;
 import com.thedionisio.model.dto.Company;
 import com.thedionisio.model.dto.Event;
-import com.thedionisio.util.mongo.Mongo;
 import com.thedionisio.util.verification.Validation;
 import org.bson.Document;
 import org.springframework.http.ResponseEntity;
@@ -46,7 +45,7 @@ public class CompanyCtrl {
                 }
                 return Validation.resquest.REGISTRY_EXISTED(company.attributeIdentifier() + company.email);
             }
-            return Validation.resquest.NOT_CONTAINS_FIELDS(company.isRequered());
+            return Validation.resquest.NOT_CONTAINS_FIELDS(company.isRequired());
         }
         catch (Exception e)
         {

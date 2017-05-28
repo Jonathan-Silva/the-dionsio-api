@@ -3,7 +3,6 @@ package com.thedionisio.model.ctrl;
 import com.thedionisio.dao.PersonRepository;
 import com.thedionisio.model.bss.PersonBss;
 import com.thedionisio.model.dto.Person;
-import com.thedionisio.util.mongo.Mongo;
 import com.thedionisio.util.verification.Validation;
 import org.bson.Document;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +43,7 @@ public class PersonCtrl {
               }
               return Validation.resquest.REGISTRY_EXISTED(person.attributeIdentifier() + person.email);
             }
-            return Validation.resquest.NOT_CONTAINS_FIELDS(person.isRequered());
+            return Validation.resquest.NOT_CONTAINS_FIELDS(person.isRequiredForCreate());
         }
         catch (Exception e)
         {
@@ -82,8 +81,12 @@ public class PersonCtrl {
     }
 
     public Object update(Person person){
-        return personRepository.update(person,person._id,collection);
+        if (person.updateValidation())
+        {
+            return personRepository.update(person.treatUpdate(),person._id,collection);
 
+        }
+        return Validation.resquest.CONTAINS_FIELDS_IMMUTABLE(person.isImmutable());
     }
 
     public Object removeOne(Person person){

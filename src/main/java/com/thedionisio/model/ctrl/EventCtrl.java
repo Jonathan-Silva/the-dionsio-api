@@ -44,7 +44,7 @@ public class EventCtrl {
                 }
                 return Validation.resquest.REGISTRY_EXISTED(event.attributeIdentifier() + event.name);
             }
-            return Validation.resquest.NOT_CONTAINS_FIELDS(event.isRequered());
+            return Validation.resquest.NOT_CONTAINS_FIELDS(event.isRequired());
         }
         catch (Exception e)
         {

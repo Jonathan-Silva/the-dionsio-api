@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thedionisio.security.Security;
 import com.thedionisio.util.mongo.Mongo;
 import com.thedionisio.util.verification.Description;
-import com.thedionisio.util.verification.Validation;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;
@@ -51,8 +50,33 @@ public class Person {
 
 
     @JsonIgnore
-    public String isRequered(){
+    public String isRequiredForCreate(){
         return "< name, email, password, genres, cpf >";
+    }
+
+    @JsonIgnore
+    public String isImmutable(){
+        return "< _id, email >";
+    }
+
+    @JsonIgnore
+    public Person treatUpdate(){
+
+        this.password = Security.encryption.generateHash(this.password);
+        if (this.genres!=null)
+        {
+            try
+            {
+                List<String> genresLowerCase = new ArrayList<>();
+                this.genres.forEach(g->genresLowerCase.add(g.toLowerCase()));
+                this.genres = genresLowerCase;
+            }
+            catch (Exception e)
+            {
+                System.out.println("log de erro genres");
+            }
+        }
+        return this;
     }
 
     @JsonIgnore
@@ -81,6 +105,11 @@ public class Person {
             this.password!=null &&
             this.genres!=null;
      //&& Validation.document.isValidCPF(this.cpf);
+    }
+
+    @JsonIgnore
+    public Boolean updateValidation(){
+        return this.email==null;
     }
 
     public Person treatResponse(){

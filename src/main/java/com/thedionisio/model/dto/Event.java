@@ -64,7 +64,7 @@ public class Event {
     }
 
     @JsonIgnore()
-    public String isRequered(){
+    public String isRequired(){
         return " < _idCompany, _idPlace, name >";
     }
 

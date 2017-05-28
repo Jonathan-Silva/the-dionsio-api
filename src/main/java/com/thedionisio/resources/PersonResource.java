@@ -31,22 +31,6 @@ public class PersonResource {
 
     @RequestMapping(method = RequestMethod.PUT)
     public Object update(@RequestBody Person person) {
-
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("nome: " + person.name);
-        System.out.println("email: " + person.email);
-        System.out.println("senha: " + person.password);
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
         return this.personCtrl.update(person);
     }
 

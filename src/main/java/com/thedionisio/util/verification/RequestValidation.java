@@ -27,6 +27,14 @@ public class RequestValidation {
 
         return validationObject;
     }
+    private ValidationObject containsFieldsImmutable(String fields)
+    {
+        validationObject.status = HttpStatus.NOT_ACCEPTABLE;
+        validationObject.description = Description.NOT_VALID_INFO;
+        validationObject.additional = Description.IMMUTABLE_FIELDS + fields;
+
+        return validationObject;
+    }
     private ValidationObject notDataBase()
     {
         validationObject.status = HttpStatus.INSUFFICIENT_STORAGE;
@@ -97,6 +105,10 @@ public class RequestValidation {
     //responses montados
     public ResponseEntity NOT_CONTAINS_ID(){
         return new ResponseEntity<Object>(notContainsID(), HttpStatus.NOT_ACCEPTABLE);
+    }
+
+    public ResponseEntity CONTAINS_FIELDS_IMMUTABLE(String fields){
+        return new ResponseEntity<Object>(containsFieldsImmutable(fields), HttpStatus.NOT_ACCEPTABLE);
     }
 
     public ResponseEntity NOT_CONTAINS_FIELDS(String fields){

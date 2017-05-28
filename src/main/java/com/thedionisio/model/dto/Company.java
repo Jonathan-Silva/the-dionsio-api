@@ -40,7 +40,7 @@ public class Company {
     public Boolean isActive;
 
     @JsonIgnore
-    public String isRequered(){
+    public String isRequired(){
         return "< name, email, password, cnpj >";
     }
 
