@@ -24,8 +24,8 @@ public class MongoConnectionFactoryTest {
            collections.add(collection);
         });
         mongoConnection.client.close();
+    
 
-        assertEquals(3, collections.size());
 
     }
 

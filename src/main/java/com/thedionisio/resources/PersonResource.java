@@ -32,13 +32,17 @@ public class PersonResource {
     @RequestMapping(method = RequestMethod.PUT)
     public Object update(@RequestBody Person person) {
 
-       return this.personCtrl.update(person);
+        System.out.println("nome: " + person.name);
+        System.out.println("email: " + person.email);
+        System.out.println("senha: " + person.password);
+
+        return this.personCtrl.update(person);
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
     public Object remove(@RequestBody Person person) {
 
-            return this.personCtrl.removeOne(person);
+        return this.personCtrl.removeOne(person);
 
     }
 

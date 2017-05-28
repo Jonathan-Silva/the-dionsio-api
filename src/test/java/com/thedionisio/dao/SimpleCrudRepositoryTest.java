@@ -26,10 +26,7 @@ public class SimpleCrudRepositoryTest {
     private Boolean isUpdate;
     private Boolean isDelete;
 
-
-    @Before
-    public void startTest() {
-
+    public SimpleCrudRepositoryTest(){
         Object objectResponse;
         Person person = new Person();
         person.name = "Alan Turing";
@@ -42,26 +39,21 @@ public class SimpleCrudRepositoryTest {
 
         Document where = new Document();
         where.put("email", "alan@turing.com");
-        objectResponse = simpleCrudRepository.find(collection, new Person(), where, new Document(), 0);
-        ResponseEntity<Object> responseRead = (ResponseEntity<Object>) objectResponse;
-        List<Person> persons = (List<Person>) responseRead.getBody();
+        objectResponse = simpleCrudRepository.find(collection, new Person(), where, new Document(), 0);;
+        List<Person> persons = (List<Person>) objectResponse;
         isRead = persons.get(0).isActive;
 
         person.name = "Turing";
         person._id = persons.get(0)._id.toString().replace("{$oid=", "").replace("}", "");
         simpleCrudRepository.update(person, person._id, collection);
         objectResponse = simpleCrudRepository.find(collection, new Person(), where, new Document(), 0);
-        responseRead = (ResponseEntity<Object>) objectResponse;
-        persons = (List<Person>) responseRead.getBody();
+        persons = (List<Person>) objectResponse;
         isUpdate = persons.get(0).name.equals("Turing");
 
         objectResponse = simpleCrudRepository.remove(collection, where);
-        responseRead = (ResponseEntity<Object>) objectResponse;
+        ResponseEntity<Object>responseRead = (ResponseEntity<Object>) objectResponse;
         isDelete = Boolean.parseBoolean(responseRead.getBody().toString());
-
-
     }
-
 
     @Test
     public void creteTest() {

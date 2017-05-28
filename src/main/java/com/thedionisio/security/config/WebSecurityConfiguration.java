@@ -69,11 +69,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/error/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/drop/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/refresh/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/event/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/error/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/login/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/person/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/company/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/event/**").permitAll()
                 .anyRequest().authenticated();
 
         httpSecurity
