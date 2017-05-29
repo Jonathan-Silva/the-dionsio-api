@@ -18,14 +18,12 @@ public class PersonResource {
 
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     public Object getOne(@PathVariable Object id)  {
-        //return com.thedionisio.util.verification.ValidationObject.document.isValidCPF(id.toString());
         return personCtrl.findOne(id);
     }
 
 
     @RequestMapping(method = RequestMethod.POST)
     public Object create(@RequestBody Person person)  {
-
         return this.personCtrl.create(person);
     }
 

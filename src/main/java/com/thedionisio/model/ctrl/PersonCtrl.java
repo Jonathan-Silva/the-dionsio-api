@@ -83,7 +83,8 @@ public class PersonCtrl {
     public Object update(Person person){
         if (person.updateValidation())
         {
-            return personRepository.update(person.treatUpdate(),person._id,collection);
+            List<Person> personUpdate = (List<Person>) personRepository.update(person.treatUpdate(),person._id,collection);
+            return Validation.resquest.REGISTRY_UPDATE(personUpdate.get(0).treatResponse());
 
         }
         return Validation.resquest.CONTAINS_FIELDS_IMMUTABLE(person.isImmutable());

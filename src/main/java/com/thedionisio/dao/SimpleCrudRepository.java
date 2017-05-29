@@ -70,7 +70,7 @@ public class SimpleCrudRepository {
             {
                 if ((Boolean) objectResponse)
                 {
-                    return Validation.resquest.REGISTRY_UPDATE(id.toString());
+                    return this.findOne(collection,id.toString(),updateObject);
                 }
                 return Validation.resquest.REQUEST_NOT_AUTHORIZED();
             }

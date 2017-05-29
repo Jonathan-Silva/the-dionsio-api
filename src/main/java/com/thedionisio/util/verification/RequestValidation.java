@@ -83,11 +83,11 @@ public class RequestValidation {
 
         return validationObject;
     }
-    private ValidationObject registryUpdate(String id)
+    private ValidationObject registryUpdate(Object object)
     {
         validationObject.status = HttpStatus.OK;
         validationObject.description = Description.REGISTER_UPDATED;
-        validationObject.additional = Description.REFERENCE_ID + id;
+        validationObject.additional = object;
 
         return validationObject;
     }
@@ -140,8 +140,8 @@ public class RequestValidation {
         return new ResponseEntity<Object>(registryCreate(objectCreate), HttpStatus.OK);
     }
 
-    public ResponseEntity REGISTRY_UPDATE(Object id){
-        return new ResponseEntity<Object>(registryUpdate(id.toString()), HttpStatus.OK);
+    public ResponseEntity REGISTRY_UPDATE(Object objectUpdate){
+        return new ResponseEntity<Object>(registryUpdate(objectUpdate), HttpStatus.OK);
     }
 
 
