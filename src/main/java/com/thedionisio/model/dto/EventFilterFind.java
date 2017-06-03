@@ -22,7 +22,7 @@ public class EventFilterFind {
         {
             Document noun = new Document();
             noun.put("$regex", "/"+this.name+"/");
-            query.put("name",this.name);
+            query.put("name",this.name.toLowerCase());
 
         }
 

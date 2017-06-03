@@ -65,16 +65,18 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/documentation/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/error/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/drop/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/forgot-password/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/reset-password/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/refresh/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/event/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/error/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/error/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/login/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/person/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/company/**").permitAll()
-                .anyRequest().authenticated();
+                .antMatchers(HttpMethod.POST, "/event/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/forgot-password/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/reset-password/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/company/**").permitAll();
+
 
         httpSecurity
                 .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);

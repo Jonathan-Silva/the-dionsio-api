@@ -107,7 +107,7 @@ public class EventCtrl {
                 {
                     if((Boolean) objectResponse)
                     {
-                        return Validation.resquest.REGISTRY_CREATE(event._id);
+                        return Validation.resquest.REGISTRY_UPDATE(event._id);
                     }
                 }catch (Exception e)
                 {
@@ -124,7 +124,20 @@ public class EventCtrl {
     }
 
     public Object removeOne(Event event){
-        return eventRepository.removeOne(event._id,collection);
+        //eventRepository.removeOne(event._id,collection);
+        event.isActive =false;
+        Object response = eventRepository.update(event,event._id,collection);
+        try
+        {
+            List<Event> eventoRemoved = (List<Event>) response;
+            if (eventoRemoved.size()>0)
+            return Validation.resquest.REGISTRY_DELETED(event._id);
+        }
+        catch (Exception e)
+        {
+
+        }
+        return response;
     }
 
     public Object asd()

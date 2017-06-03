@@ -54,7 +54,7 @@ public class AuthenticationController {
         UserDetails userDetails = this.userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 
         login.token = this.tokenUtils.generateToken(userDetails);
-        login.entity = new CommonPersonCompanyBss().findPersonOrCompany(authenticationRequest.getUsername());
+        login.entity = new CommonPersonCompanyBss().findPersonOrCompanyTreat(authenticationRequest.getUsername());
 
         return ResponseEntity.ok(login);
     }

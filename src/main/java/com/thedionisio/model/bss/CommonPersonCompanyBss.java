@@ -29,13 +29,29 @@ public class CommonPersonCompanyBss {
 
     }
 
-    public Object findPersonOrCompany(String email){
+    public Object findPersonOrCompanyTreat(String email){
         try
         {
             List listPerson = (List) personRepository.findByEmail(email);
             List listCompany = (List) companyRepository.findByEmail(email);
             if (listPerson.size() > 0) return ((Person)listPerson.get(0)).treatResponse();
             if (listCompany.size() > 0) return((Company)listCompany.get(0)).treatResponse();
+            return null;
+        }
+        catch (Exception e )
+        {
+            return null;
+        }
+
+    }
+
+    public Object findPersonOrCompany(String email){
+        try
+        {
+            List listPerson = (List) personRepository.findByEmail(email);
+            List listCompany = (List) companyRepository.findByEmail(email);
+            if (listPerson.size() > 0) return ((Person)listPerson.get(0));
+            if (listCompany.size() > 0) return((Company)listCompany.get(0));
             return null;
         }
         catch (Exception e )
