@@ -5,6 +5,9 @@ import com.thedionisio.model.dto.Event;
 import com.thedionisio.model.dto.EventFilterFind;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by jonathan on 3/11/17.
  */
@@ -23,6 +26,7 @@ public class EventResource {
 
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     public Object getOne(@PathVariable Object id)  {
+        System.out.println("asdfghjk");
         return  eventCtrl.asd();
        // return eventCtrl.findOne(id);
     }

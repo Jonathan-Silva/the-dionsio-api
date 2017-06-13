@@ -26,14 +26,14 @@ public class EventBss {
     }
 
 
-    public Document treatResponse(List<Event> events) {
+    public Object treatResponse(List<Event> events) {
         events.forEach(e -> {
              e.treatResponse();
         });
 
         Document response = new Document();
         response.put("events", events);
-        return response;
+        return events;
     }
 
 }
