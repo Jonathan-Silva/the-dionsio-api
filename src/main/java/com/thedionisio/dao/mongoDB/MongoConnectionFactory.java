@@ -11,7 +11,7 @@ public class MongoConnectionFactory {
 
         MongoConnection mongoConnection = new MongoConnection();
         mongoConnection.client = new MongoClient("localhost",27017 );
-        mongoConnection.database = mongoConnection.client.getDatabase("the-dioniso");
+        mongoConnection.database = mongoConnection.client.getDatabase("hades");
 
 
         return mongoConnection;

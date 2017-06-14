@@ -18,7 +18,7 @@ public interface Description {
      String REQUIRED_ID ="field <_id> is required";
      String REQUIRED_FIELDS ="required fields : ";
      String IMMUTABLE_FIELDS ="immutable fields : ";
-     String FIELD_EXISTED = "> already registered in the system";
+     String FIELD_EXISTED = " > already registered in the system";
      String NOT_REGISTERED = "no register were found that satisfies the condition";
      String REFERENCE_ID = "reference _id = ";
      String PASSWORD_SHADOW = "you shall not pass";

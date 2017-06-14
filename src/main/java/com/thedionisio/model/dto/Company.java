@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thedionisio.security.Security;
 import com.thedionisio.util.mongo.Mongo;
 import com.thedionisio.util.verification.Description;
+import com.thedionisio.util.verification.Validation;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
@@ -47,6 +48,7 @@ public class Company {
     @JsonIgnore
     public Company treatCreate(){
         this.password = Security.encryption.generateHash(this.password);
+        this._id = null;
         this.isActive = true;
 
         return this;
@@ -56,7 +58,12 @@ public class Company {
         return  this.name!=null  &&
                 this.email!=null &&
                 this.password!=null &&
-                this.cnpj!=null ;
+                this.cnpj!=null &&
+                !this.name.isEmpty() &&
+                !this.email.isEmpty() &&
+                !this.password.isEmpty() &&
+                !this.cnpj.isEmpty() &&
+                Validation.field.isValidEmail(this.email);
         //&& Validation.document.isCNPJ(this.cnpj)
     }
     @JsonIgnore
@@ -68,10 +75,28 @@ public class Company {
         return bCryptPasswordEncoder.encode(this.password);
     }
 
+    @JsonIgnore
     public Company treatResponse (){
         this._id = Mongo.treatMongoId.toString(this._id);
         this.password = Description.PASSWORD_SHADOW;
         return this;
     }
 
+    @JsonIgnore
+    public boolean updateValidation() {
+       return this.email==null;
+    }
+
+    @JsonIgnore
+    public String isImmutable(){
+        return "< _id, email >";
+    }
+
+    public Company treatUpdate() {
+        if(this.password!=null)
+        {
+            this.password = Security.encryption.generateHash(this.password);
+        }
+        return this;
+    }
 }

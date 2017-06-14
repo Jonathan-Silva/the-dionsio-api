@@ -18,7 +18,10 @@ public class EventRepository extends SimpleCrudRepository {
 
         Document query = new Document();
         query.append("_idCompany",id);
-        Object objectFind  = super.find(collection,new Event(), query, new Document(),0);
+        query.append("isActive",true);
+        Document sort = new Document();
+        sort.append("dateTimeRange.start",-1);
+        Object objectFind  = super.find(collection,new Event(), query, sort,0);
         try
         {
             List<Event> events = (List<Event>) objectFind;

@@ -23,14 +23,12 @@ public class PersonBss {
 
     }
 
-    public Document treatResponse(List<Person> people){
+    public Object treatResponse(List<Person> people){
         people.forEach(p->{
             p.treatResponse();
         });
 
-        Document response = new Document();
-        response.put("people", people);
-        return response;
+        return people;
     }
 
 

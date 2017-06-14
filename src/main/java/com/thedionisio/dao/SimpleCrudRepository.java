@@ -37,7 +37,7 @@ public class SimpleCrudRepository {
     public Object findOne(String collection, Object id, Object objectBase){
         try
         {
-            if(id==null)return Validation.resquest.NOT_CONTAINS_ID();
+            if(id==null) {return Validation.resquest.NOT_CONTAINS_ID();}
 
             return findOneBlock(collection,id, objectBase);
 
@@ -87,13 +87,10 @@ public class SimpleCrudRepository {
     public Object updateBlock(String collection, Object id, Object object) {
 
         Object item = simpleCrud.update(collection, id, object);
-        if (item != null) {
-            if (!item.equals(false)) {
-                return true;
-            }
-            return validation.ITEM_NOT_FOUND(item);
+        if (item != null && !item.equals(false)) {
+            return true;
         }
-        return validation.NOT_DATA_BASE();
+        return validation.ITEM_NOT_FOUND(item);
     }
 
     public Object removeOne(Object id, String collection) {

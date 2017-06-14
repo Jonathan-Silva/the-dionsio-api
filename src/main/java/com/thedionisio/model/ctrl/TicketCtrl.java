@@ -67,11 +67,17 @@ public class TicketCtrl {
     }
 
     public Object findOne(Object id){
+
         Object objectFind  = ticketRepository.findOne(collection,id,new Ticket());
         try
         {
             List<Ticket> tickets = (List<Ticket>) objectFind;
-            return tickets.get(0).treatResponse();
+
+            if (tickets.get(0).isActive)
+            {
+                return tickets.get(0).treatResponse();
+            }
+            return new ArrayList<Ticket>();
         }
         catch (Exception e)
         {
@@ -82,8 +88,17 @@ public class TicketCtrl {
     public Object update(Ticket ticket){
         if (ticket.updateValidation())
         {
-            List<Ticket> ticketUpdate = (List<Ticket>) ticketRepository.update(ticket.treatUpdate(),ticket._id,collection);
-            return Validation.resquest.REGISTRY_UPDATE(ticketUpdate.get(0).treatResponse());
+            Object objectUpdate = ticketRepository.update(ticket.treatUpdate(),ticket._id,collection);
+
+           try
+           {
+               List<Ticket> ticketUpdate = (List<Ticket>) objectUpdate;
+               return Validation.resquest.REGISTRY_UPDATE(ticketUpdate.get(0).treatResponse());
+           }
+           catch (Exception e)
+           {
+               return  objectUpdate;
+           }
 
         }
         return Validation.resquest.CONTAINS_FIELDS_IMMUTABLE(ticket.isImmutable());

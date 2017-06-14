@@ -47,31 +47,30 @@ public class Event {
     @JsonIgnore
     public Event treatCreate(){
         this.isActive = true;
-        this.name = this.name.toLowerCase();
-        this.description = this.description.toLowerCase();
-        try
+        if(this.name != null ){this.name = this.name.toLowerCase();}
+        if(this.description != null ){this.description = this.description.toLowerCase();}
+
+        if(this.genres != null)
         {
             List<String> genresLowerCase = new ArrayList<>();
             this.genres.forEach(g->genresLowerCase.add(g.toLowerCase()));
             this.genres = genresLowerCase;
         }
-        catch (Exception e)
-        {
-            System.out.println("log de erro genres");
-        }
+
+        this._id = null;
         this.isActive = true;
         return this;
     }
 
     @JsonIgnore()
     public String isRequired(){
-        return " < _idCompany, _idPlace, name >";
+        return " < _idCompany, name >";
     }
 
     @JsonIgnore()
     public Boolean createValidation(){
-        System.out.println(new CompanyBss().isActiveCompany(this._idCompany));
-        return  this.name!=null && new CompanyBss().isActiveCompany(this._idCompany);
+        return  this.name!=null &&
+                new CompanyBss().isActiveCompany(this._idCompany);
     }
 
     @JsonIgnore()

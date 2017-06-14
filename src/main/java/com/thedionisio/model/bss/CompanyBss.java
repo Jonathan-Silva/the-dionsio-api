@@ -27,14 +27,12 @@ public class CompanyBss {
 
     }
 
-    public Document treatResponse(List<Company> companies){
+    public Object treatResponse(List<Company> companies){
         companies.forEach(c->{
             c.treatResponse();
         });
 
-        Document response = new Document();
-        response.put("companies", companies);
-        return response;
+        return companies;
     }
 
     public Boolean isActiveCompany(Object id){

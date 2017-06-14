@@ -44,6 +44,7 @@ public class Ticket {
     @JsonIgnore
     public Ticket treatCreate() {
         this.isActive = true;
+        this._id = null;
         this.purchaseDate = LocalDateTime.now();
         return this;
     }

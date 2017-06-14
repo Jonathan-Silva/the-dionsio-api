@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thedionisio.security.Security;
 import com.thedionisio.util.mongo.Mongo;
 import com.thedionisio.util.verification.Description;
+import com.thedionisio.util.verification.Validation;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;
@@ -97,7 +98,7 @@ public class Person {
         {
             System.out.println("log de erro genres");
         }
-
+        this._id = null;
         return this;
     }
 
@@ -107,26 +108,17 @@ public class Person {
             this.email!=null &&
             this.password!=null &&
             this.genres!=null &&
-            !this.name.equals("") &&
-            !this.email.equals("") &&
-            !this.password.equals("") &&
-            isValidEmail();
+            !this.name.isEmpty() &&
+            !this.email.isEmpty() &&
+            !this.password.isEmpty() &&
+             Validation.field.isValidEmail(this.email);
      //&& Validation.document.isValidCPF(this.cpf);
     }
 
-    private boolean isValidEmail() {
-        char [] emailChar = this.email.toCharArray();
 
-        return  this.email.contains("@") &&
-                !this.email.contains(" ") &&
-                emailChar[0]!='@' &&
-                emailChar[emailChar.length-1]!='@' &&
-                emailChar.length >3;
-    }
 
     @JsonIgnore
     public Boolean updateValidation(){
-
         return this.email==null;
     }
 

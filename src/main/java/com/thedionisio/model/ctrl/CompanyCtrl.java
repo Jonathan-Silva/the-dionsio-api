@@ -3,7 +3,6 @@ package com.thedionisio.model.ctrl;
 import com.thedionisio.dao.CompanyRepository;
 import com.thedionisio.model.bss.CompanyBss;
 import com.thedionisio.model.dto.Company;
-import com.thedionisio.model.dto.Event;
 import com.thedionisio.util.verification.Validation;
 import org.bson.Document;
 import org.springframework.http.ResponseEntity;
@@ -55,7 +54,6 @@ public class CompanyCtrl {
     }
 
     public Object find(){
-
         Object objectFind  = companyRepository.find(collection,new Company(), new Document(), new Document(),0);
         try
         {
@@ -69,12 +67,11 @@ public class CompanyCtrl {
     }
 
     public Object findOne(Object id){
-        Object objectFind  = companyRepository.findOne(collection,id,new Event());
-
+        Object objectFind  = companyRepository.findOne(collection,id,new Company());
         try
         {
             List<Company> companies = (List<Company>) objectFind;
-            return companyBss.treatResponse(companies);
+            return companies.get(0).treatResponse();
         }
         catch (Exception e)
         {
@@ -83,12 +80,28 @@ public class CompanyCtrl {
     }
 
     public Object update(Company company){
-        return companyRepository.update(company,company._id,collection);
+
+        if (company.updateValidation())
+        {
+            Object objectUpdate = companyRepository.update(company.treatUpdate(),company._id,collection);
+            try
+            {
+                List<Company> companyUpdate = (List<Company>) objectUpdate;
+                return Validation.resquest.REGISTRY_UPDATE(companyUpdate.get(0).treatResponse());
+            }
+            catch (Exception e)
+            {
+                return objectUpdate;
+            }
+
+        }
+        return Validation.resquest.CONTAINS_FIELDS_IMMUTABLE(company.isImmutable());
 
     }
 
     public Object removeOne(Company company){
-       return  companyRepository.removeOne(company._id,collection);
+
+        return  companyRepository.removeOne(company._id,collection);
     }
 
 

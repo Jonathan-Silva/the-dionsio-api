@@ -144,66 +144,6 @@ public class EventCtrl {
         return response;
     }
 
-    public Object asd()
-    {
-        Event event = new Event();
-        DateTimeRange dateTimeRange = new DateTimeRange();
-        dateTimeRange.start = LocalDateTime.now();
-        dateTimeRange.end = LocalDateTime.now();
-        event._id = "59164e6565bd9015c466113c";
-        event._idCompany = "59164e6565bd9015c466113c";
-        Place place = new Place();
-        place.answerable="José Toalha";
-        place.description="CASA DA MAE JOANA";
-        place.city="Soberanna do DDD18";
-        place.street="Joao Dutra";
-        place.number = "A5";
-        place.phone = "(00) 0 0000 - 0000";
-        Location location =  new Location();
-        location.latitude="123.456";
-        location.longitude="789.456";
-        place.isActive = true;
-        place.location = location;
-        place.zipCode = "16012-625";
-        event.place= place;
-        event.dateTimeRange = dateTimeRange;
-        event.name="Festa das PRIMA";
-        event.description = "Só não pode dar bitoca, porque boca de puta é guaveta da de piroca";
-        List<String> genres = new ArrayList<>();
-        genres.add("genro 1");
-        genres.add("genro 2");
-        genres.add("genro 3");
-        event.genres = genres;
-        List<String> banners = new ArrayList<>();
-        banners.add("url-banner 1");
-        banners.add("url-banner 2");
-        banners.add("url-banner 3");
-        event.urlBanners=banners;
-        List<Batch> batches = new ArrayList<>();
-        Batch batch = new Batch();
-        batch.name = "Um Sabio Qualquer";
-        batch.dateTimeRange = dateTimeRange;
-        batch.description ="Thor filho do Brasil";
-        batch.limit =50;
-        batch.sector = "NO CANTINHO";
-        batch.sold =25;
-        batch.isActive = true;
-        Price price = new Price();
-        price.man=15.0;
-        price.woman=15.0;
-        price.other=15.0;
-        batch.price = price;
-        OpenBar openBar = new OpenBar();
-        openBar.description = "Você tem direto a um toddynho";
-        openBar.name = "Patotinha";
-        openBar.isActive = true;
-        batch.openBar = openBar;
-        batches.add(batch);
-        event.batches =  batches;
-        event.isActive = true;
-
-        return event;
-    }
 }
 
 

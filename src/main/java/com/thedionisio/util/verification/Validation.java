@@ -7,4 +7,5 @@ public interface Validation {
 
     RequestValidation resquest = new  RequestValidation();
     DocumentsValidation document = new DocumentsValidation();
+    FieldValidation field = new FieldValidation();
 }
