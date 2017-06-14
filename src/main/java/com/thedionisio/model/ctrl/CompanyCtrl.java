@@ -33,7 +33,7 @@ public class CompanyCtrl {
                         if (Boolean.parseBoolean(responseEntity.getBody().toString()))
                         {
                             List<Company> companies = (List<Company>) companyRepository.findByEmail(company.email);
-                            return Validation.resquest.REGISTRY_CREATE(companies.get(0).treatCreate());
+                            return Validation.resquest.REGISTRY_CREATE(companies.get(0).treatResponse());
                         }
                     }
                     catch (Exception e)

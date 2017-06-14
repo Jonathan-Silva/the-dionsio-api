@@ -24,11 +24,15 @@ public class EventResource {
         return eventCtrl.find();
     }
 
+    @RequestMapping(value = "/find-by-company/{id:.+}", method = RequestMethod.GET)
+    public Object getByCompany(@PathVariable String id)  {
+        return  eventCtrl.findByCompany(id);
+    }
+
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     public Object getOne(@PathVariable Object id)  {
-        System.out.println("asdfghjk");
-        return  eventCtrl.asd();
-       // return eventCtrl.findOne(id);
+     return false;
+        //  return eventCtrl.findOne(id);
     }
 
     @RequestMapping(method = RequestMethod.POST)

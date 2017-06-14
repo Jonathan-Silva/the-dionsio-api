@@ -8,6 +8,7 @@ import com.thedionisio.util.verification.Validation;
 import org.bson.Document;
 import org.springframework.http.ResponseEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -69,12 +70,12 @@ public class TicketCtrl {
         Object objectFind  = ticketRepository.findOne(collection,id,new Ticket());
         try
         {
-            List<Ticket> events = (List<Ticket>) objectFind;
-            return ticketBss.treatResponse(events);
+            List<Ticket> tickets = (List<Ticket>) objectFind;
+            return tickets.get(0).treatResponse();
         }
         catch (Exception e)
         {
-            return objectFind;
+            return new ArrayList<Ticket>();
         }
     }
 

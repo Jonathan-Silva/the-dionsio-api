@@ -80,6 +80,10 @@ public class EventCtrl {
         }
     }
 
+    public Object findByCompany(String id){
+        return eventRepository.findByCompany(id);
+    }
+
     public Object findOne(Object id){
         Object objectFind  = eventRepository.findOne(collection,id,new Event());
 

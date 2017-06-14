@@ -1,6 +1,7 @@
 package com.thedionisio.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.thedionisio.util.mongo.Mongo;
 
 import java.time.LocalDateTime;
 
@@ -69,7 +70,7 @@ public class Ticket {
 
     @JsonIgnore
     public Ticket treatResponse() {
-        //trata resposta
+        this._id = Mongo.treatMongoId.toString(this._id);
         return this;
     }
 

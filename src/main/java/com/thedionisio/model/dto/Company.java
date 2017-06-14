@@ -46,7 +46,6 @@ public class Company {
 
     @JsonIgnore
     public Company treatCreate(){
-
         this.password = Security.encryption.generateHash(this.password);
         this.isActive = true;
 
