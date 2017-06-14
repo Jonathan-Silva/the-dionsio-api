@@ -64,12 +64,13 @@ public class Event {
 
     @JsonIgnore()
     public String isRequired(){
-        return " < _idCompany, name >";
+        return " < _idCompany, name, dateTimeRange >";
     }
 
     @JsonIgnore()
     public Boolean createValidation(){
         return  this.name!=null &&
+                this.dateTimeRange!=null &&
                 new CompanyBss().isActiveCompany(this._idCompany);
     }
 

@@ -33,4 +33,18 @@ public class EventRepository extends SimpleCrudRepository {
         }
     }
 
+    public Boolean isActive(Object id)
+    {
+        try
+        {
+            List<Event> events = (List<Event>) super.findOne(collection,id,new Event());
+
+            return events.get(0).isActive;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
+
 }

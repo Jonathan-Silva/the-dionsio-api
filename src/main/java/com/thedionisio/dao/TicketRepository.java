@@ -22,6 +22,7 @@ public class TicketRepository extends SimpleCrudRepository {
         query.put("_idEvent",ticket._idEvent);
         query.put("_idPerson",ticket._idPerson);
         query.put("_idCompany",ticket._idCompany);
+        query.put("isActive",true);
 
         Object objectFind  = super.find(collection,new Ticket(), query, new Document(),0);
         try
@@ -33,6 +34,18 @@ public class TicketRepository extends SimpleCrudRepository {
         {
             return objectFind;
         }
+    }
 
+    public Boolean isExist(Ticket ticket)
+    {
+        try
+        {
+            List<Ticket> tickets = (List<Ticket>) findAfterCreate(ticket);
+            return tickets.get(0).isActive;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
     }
 }

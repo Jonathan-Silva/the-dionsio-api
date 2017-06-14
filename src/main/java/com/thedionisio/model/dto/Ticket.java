@@ -1,6 +1,10 @@
 package com.thedionisio.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.thedionisio.dao.CompanyRepository;
+import com.thedionisio.dao.EventRepository;
+import com.thedionisio.dao.PersonRepository;
+import com.thedionisio.dao.TicketRepository;
 import com.thedionisio.util.mongo.Mongo;
 
 import java.time.LocalDateTime;
@@ -9,6 +13,11 @@ import java.time.LocalDateTime;
  * Created by jonathan on 3/7/17.
  */
 public class Ticket {
+
+    private static PersonRepository personRepository = new PersonRepository();
+    private static CompanyRepository companyRepository = new CompanyRepository();
+    private static EventRepository eventRepository = new EventRepository();
+    private static TicketRepository ticketRepository = new TicketRepository();
 
     @Override
     public String toString() {
@@ -36,6 +45,19 @@ public class Ticket {
     public Boolean isActive;
 
     public boolean createValidation() {
+        return validationForNullFields() &&
+               validationForIsActiveEntity() &&
+               isExist();
+
+    }
+
+    private boolean validationForIsActiveEntity() {
+        return personRepository.isActive(this._idPerson) &&
+               companyRepository.isActive(this._idCompany) &&
+               eventRepository.isActive(this._idEvent);
+    }
+
+    private boolean validationForNullFields() {
         return this._idCompany != null &&
                this._idPerson != null &&
                this._idEvent != null &&
@@ -43,6 +65,10 @@ public class Ticket {
                !this._idCompany.equals("")&&
                !this._idPerson.equals("")&&
                !this._idEvent.equals("");
+    }
+
+    private boolean isExist(){
+        return ticketRepository.isExist(this);
     }
 
     @JsonIgnore
