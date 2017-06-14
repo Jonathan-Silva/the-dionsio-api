@@ -9,12 +9,14 @@ import java.time.LocalDateTime;
  * Created by jonathan on 3/7/17.
  */
 public class Ticket {
+
     @Override
     public String toString() {
         return "Ticket{" +
                 "_id=" + _id +
                 ", _idPerson=" + _idPerson +
                 ", _idCompany=" + _idCompany +
+                ", _idEvent=" + _idEvent +
                 ", batch=" + batch +
                 ", purchaseDate=" + purchaseDate +
                 ", price=" + price +
@@ -26,6 +28,7 @@ public class Ticket {
     public Object _id;
     public Object _idPerson;
     public Object _idCompany;
+    public Object _idEvent;
     public Batch batch;
     public LocalDateTime purchaseDate;
     public Price price;
@@ -33,12 +36,13 @@ public class Ticket {
     public Boolean isActive;
 
     public boolean createValidation() {
-        return this._idCompany!=null &&
-               this._idPerson!=null &&
-               this.batch!=null &&
+        return this._idCompany != null &&
+               this._idPerson != null &&
+               this._idEvent != null &&
+               this.batch != null &&
                !this._idCompany.equals("")&&
-               !this.batch.equals("")&&
-               !this._idPerson.equals("");
+               !this._idPerson.equals("")&&
+               !this._idEvent.equals("");
     }
 
     @JsonIgnore

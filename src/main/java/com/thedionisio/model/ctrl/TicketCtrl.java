@@ -31,7 +31,7 @@ public class TicketCtrl {
                     try                  {
                         if (Boolean.parseBoolean(responseEntity.getBody().toString()))
                         {
-                            return Validation.resquest.REGISTRY_CREATE(true);
+                            return Validation.resquest.REGISTRY_CREATE(ticketRepository.findAfterCreate(ticket));
                         }
                     }
                     catch (Exception e)
