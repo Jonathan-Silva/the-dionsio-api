@@ -45,13 +45,22 @@ public class Ticket {
     public Boolean isActive;
 
     public boolean createValidation() {
+        System.out.println(validationForNullFields());
+        System.out.println(validationForIsActiveEntity());
+        System.out.println(!isExist());
+
         return validationForNullFields() &&
                validationForIsActiveEntity() &&
-               isExist();
+               !isExist();
 
     }
 
     private boolean validationForIsActiveEntity() {
+
+        System.out.println(personRepository.isActive(this._idPerson));
+        System.out.println(companyRepository.isActive(this._idCompany));
+        System.out.println(eventRepository.isActive(this._idEvent));
+
         return personRepository.isActive(this._idPerson) &&
                companyRepository.isActive(this._idCompany) &&
                eventRepository.isActive(this._idEvent);
