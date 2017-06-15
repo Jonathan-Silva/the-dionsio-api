@@ -1,4 +1,4 @@
-package com.thedionisio.security.model;
+package com.thedionisio.services.security.model;
 
 
 public class AuthenticationResponse {

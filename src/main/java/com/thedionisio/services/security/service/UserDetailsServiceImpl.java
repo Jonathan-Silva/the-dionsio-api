@@ -1,10 +1,10 @@
-package com.thedionisio.security.service;
+package com.thedionisio.services.security.service;
 
 import com.thedionisio.dao.CompanyRepository;
 import com.thedionisio.dao.PersonRepository;
 import com.thedionisio.model.dto.Company;
 import com.thedionisio.model.dto.Person;
-import com.thedionisio.security.model.SpringSecurityUser;
+import com.thedionisio.services.security.model.SpringSecurityUser;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

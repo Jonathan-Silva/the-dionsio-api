@@ -1,7 +1,7 @@
-package com.thedionisio.security.model;
+package com.thedionisio.services.security.model;
 
 
-import com.thedionisio.security.Security;
+import com.thedionisio.services.security.Security;
 
 public class AuthenticationRequest {
 

@@ -1,4 +1,4 @@
-package com.thedionisio.security;
+package com.thedionisio.services.security;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

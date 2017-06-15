@@ -1,8 +1,8 @@
-package com.thedionisio.security.filter;
+package com.thedionisio.services.security.filter;
 
 
-import com.thedionisio.security.AppConstant;
-import com.thedionisio.security.TokenUtils;
+import com.thedionisio.services.security.AppConstant;
+import com.thedionisio.services.security.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

@@ -6,7 +6,7 @@ import com.thedionisio.model.bss.CommonPersonCompanyBss;
 import com.thedionisio.model.dto.Company;
 import com.thedionisio.model.dto.ForgotPassword;
 import com.thedionisio.model.dto.Person;
-import com.thedionisio.security.Security;
+import com.thedionisio.services.security.Security;
 
 import java.time.LocalDateTime;
 

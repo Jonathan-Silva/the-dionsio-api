@@ -1,7 +1,7 @@
-package com.thedionisio.security;
+package com.thedionisio.services.security;
 
 
-import com.thedionisio.security.model.SpringSecurityUser;
+import com.thedionisio.services.security.model.SpringSecurityUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

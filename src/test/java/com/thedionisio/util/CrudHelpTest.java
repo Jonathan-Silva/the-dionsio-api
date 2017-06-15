@@ -2,16 +2,9 @@ package com.thedionisio.util;
 
 import com.thedionisio.dao.SimpleCrudRepository;
 import com.thedionisio.model.dto.Person;
-import com.thedionisio.security.Security;
+import com.thedionisio.services.security.Security;
 import org.bson.Document;
-import org.junit.Test;
 import org.springframework.http.ResponseEntity;
-
-import javax.swing.plaf.synth.SynthOptionPaneUI;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by jonathan on 3/27/17.

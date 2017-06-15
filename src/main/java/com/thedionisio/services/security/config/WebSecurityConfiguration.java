@@ -1,7 +1,7 @@
-package com.thedionisio.security.config;
+package com.thedionisio.services.security.config;
 
 
-import com.thedionisio.security.filter.AuthenticationTokenFilter;
+import com.thedionisio.services.security.filter.AuthenticationTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

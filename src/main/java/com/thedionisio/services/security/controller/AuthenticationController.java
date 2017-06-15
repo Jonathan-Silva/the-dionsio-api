@@ -1,13 +1,13 @@
-package com.thedionisio.security.controller;
+package com.thedionisio.services.security.controller;
 
 
 import com.thedionisio.model.bss.CommonPersonCompanyBss;
 import com.thedionisio.model.dto.Login;
-import com.thedionisio.security.AppConstant;
-import com.thedionisio.security.TokenUtils;
-import com.thedionisio.security.model.AuthenticationRequest;
-import com.thedionisio.security.model.AuthenticationResponse;
-import com.thedionisio.security.model.SpringSecurityUser;
+import com.thedionisio.services.security.AppConstant;
+import com.thedionisio.services.security.TokenUtils;
+import com.thedionisio.services.security.model.AuthenticationRequest;
+import com.thedionisio.services.security.model.AuthenticationResponse;
+import com.thedionisio.services.security.model.SpringSecurityUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

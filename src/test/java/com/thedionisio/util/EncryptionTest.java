@@ -1,6 +1,6 @@
 package com.thedionisio.util;
 
-import com.thedionisio.security.Security;
+import com.thedionisio.services.security.Security;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

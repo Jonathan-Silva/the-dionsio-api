@@ -1,7 +1,7 @@
 package com.thedionisio.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.thedionisio.security.Security;
+import com.thedionisio.services.security.Security;
 import com.thedionisio.util.mongo.Mongo;
 import com.thedionisio.util.verification.Description;
 import com.thedionisio.util.verification.Validation;
