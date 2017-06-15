@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.*;
  * Created by jonathan on 6/14/17.
  */
 
-@RestController("mercado-pago")
+@RestController()
+@RequestMapping(value = "mercado-pago")
 public class MercadoPagoResource {
 
     private static String returnString;
