@@ -33,7 +33,7 @@ public class MongoConnectionFactoryTest {
     public void collectionNameTest(){
 
         MongoConnectionFactory mongoConnectionFactory = new MongoConnectionFactory();
-        MongoConnection mongoConnection = mongoConnectionFactory.getDevConetion();
+        MongoConnection mongoConnection = mongoConnectionFactory.getConetion();
         List<String> collections = new ArrayList<>();
         mongoConnection.database.listCollectionNames().forEach((Block<? super String>) collection ->{
             collections.add(collection);
@@ -57,7 +57,7 @@ public class MongoConnectionFactoryTest {
 
 
 
-        for (int i = 0; i<collectionsNames.length; i++)
+        for (int i = 0; i<3; i++)
         {
             assertEquals(true, collectionsNames[i]);
         }

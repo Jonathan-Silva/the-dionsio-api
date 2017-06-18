@@ -1,6 +1,7 @@
 package com.thedionisio.resources;
 
 import com.thedionisio.model.ctrl.PersonCtrl;
+import com.thedionisio.model.dto.Card;
 import com.thedionisio.model.dto.Person;
 import org.springframework.web.bind.annotation.*;
 

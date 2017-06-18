@@ -80,7 +80,7 @@ public class ForgotPasswordCtrl {
         else if (company!=null && (Security.encryption.isPasswordValid(company.password,forgotPassword.oldPassword)))
         {
             company.password = Security.encryption.generateHash(forgotPassword.newPassword);
-            companyRepository.update(company,company._id,collectionP);
+            companyRepository.update(company,company._id,collectionC);
             return true;
         }
         return false;

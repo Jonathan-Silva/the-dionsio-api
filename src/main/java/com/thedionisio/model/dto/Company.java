@@ -21,7 +21,7 @@ public class Company {
                 ", socialName='" + socialName + '\'' +
                 ", cnpj='" + cnpj + '\'' +
                 ", email='" + email + '\'' +
-                ", PASSWORD_SHADOW='" + password + '\'' +
+                ", password='" + password + '\'' +
                 ", answerable='" + answerable + '\'' +
                 ", phone='" + phone + '\'' +
                 ", places=" + places +

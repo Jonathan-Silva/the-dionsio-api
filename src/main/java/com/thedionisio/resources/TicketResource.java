@@ -23,6 +23,16 @@ public class TicketResource {
     }
 
 
+    @RequestMapping(value = "by-cpf/{cpf:.+}", method = RequestMethod.GET)
+    public Object getByCpf(@PathVariable String cpf)  {
+        return ticketCtrl.findByCpf(cpf);
+    }
+
+    @RequestMapping(value = "by-email/{email:.+}", method = RequestMethod.GET)
+    public Object getByEmail(@PathVariable String email)  {
+        return ticketCtrl.findByEmail(email);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public Object create(@RequestBody Ticket ticket)  {
         return this.ticketCtrl.create(ticket);

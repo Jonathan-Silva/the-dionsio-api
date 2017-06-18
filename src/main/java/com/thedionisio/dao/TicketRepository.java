@@ -3,6 +3,7 @@ package com.thedionisio.dao;
 import com.thedionisio.model.dto.Ticket;
 import org.bson.Document;
 
+import javax.management.Query;
 import java.util.List;
 
 /**
@@ -47,5 +48,31 @@ public class TicketRepository extends SimpleCrudRepository {
         {
             return false;
         }
+    }
+
+
+    public Object findByCpfOrEmail(String value, String type){
+
+        Document query = new Document();
+        if (type.equals("cpf"))
+        {
+            query.put("person.cpf",value);
+        }
+        else
+        {
+            query.put("person.email",value);
+        }
+
+        Object objectFind  = super.find(collection,new Ticket(), query, new Document(),0);
+        try
+        {
+            List<Ticket> tickets = (List<Ticket>) objectFind;
+            return treatResponse(tickets);
+        }
+        catch (Exception e)
+        {
+            return objectFind;
+        }
+
     }
 }

@@ -8,6 +8,7 @@ import com.thedionisio.dao.TicketRepository;
 import com.thedionisio.util.mongo.Mongo;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Created by jonathan on 3/7/17.
@@ -42,13 +43,11 @@ public class Ticket {
     public LocalDateTime purchaseDate;
     public Price price;
     public OpenBar openBar;
+    @JsonIgnore
+    public Person person;
     public Boolean isActive;
 
     public boolean createValidation() {
-        System.out.println(validationForNullFields());
-        System.out.println(validationForIsActiveEntity());
-        System.out.println(!isExist());
-
         return validationForNullFields() &&
                validationForIsActiveEntity() &&
                !isExist();
@@ -57,9 +56,11 @@ public class Ticket {
 
     private boolean validationForIsActiveEntity() {
 
-        System.out.println(personRepository.isActive(this._idPerson));
-        System.out.println(companyRepository.isActive(this._idCompany));
-        System.out.println(eventRepository.isActive(this._idEvent));
+        if (personRepository.isActive(this._idPerson))
+        {
+            List<Person> people = (List<Person>) personRepository.findOne("person",this._idPerson,new Person());
+            this.person = people.get(0);
+        }
 
         return personRepository.isActive(this._idPerson) &&
                companyRepository.isActive(this._idCompany) &&

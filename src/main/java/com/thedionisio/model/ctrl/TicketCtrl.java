@@ -2,7 +2,6 @@ package com.thedionisio.model.ctrl;
 
 import com.thedionisio.dao.TicketRepository;
 import com.thedionisio.model.bss.TicketBss;
-import com.thedionisio.model.dto.Person;
 import com.thedionisio.model.dto.Ticket;
 import com.thedionisio.util.verification.Validation;
 import org.bson.Document;
@@ -66,6 +65,36 @@ public class TicketCtrl {
     public Object find(){
 
         Object objectFind  = ticketRepository.find(collection,new Ticket(), new Document(), new Document(),0);
+        try
+        {
+            List<Ticket> tickets = (List<Ticket>) objectFind;
+            return ticketRepository.treatResponse(tickets);
+        }
+        catch (Exception e)
+        {
+            return objectFind;
+        }
+
+    }
+
+    public Object findByCpf(String cpf){
+
+        Object objectFind  = ticketRepository.findByCpfOrEmail(cpf,"cpf");
+        try
+        {
+            List<Ticket> tickets = (List<Ticket>) objectFind;
+            return ticketRepository.treatResponse(tickets);
+        }
+        catch (Exception e)
+        {
+            return objectFind;
+        }
+
+    }
+
+    public Object findByEmail(String email){
+
+        Object objectFind  = ticketRepository.findByCpfOrEmail(email,"email");
         try
         {
             List<Ticket> tickets = (List<Ticket>) objectFind;
